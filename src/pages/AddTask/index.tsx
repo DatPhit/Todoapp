@@ -73,7 +73,7 @@ function AddTask() {
                 groupname,
             }),
         );
-        // linkRef.current?.click();
+        linkRef.current?.click();
     };
 
     return (
