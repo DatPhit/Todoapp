@@ -1,0 +1,51 @@
+.home_col_head {
+    background-color: #464665;
+    height: 29vh;
+    padding: 0 0 !important;
+    border-radius: 1rem;
+}
+
+.home_head_content {
+    background-color: #555571;
+    height: 20%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    border-radius: 10px;
+}
+
+.home_notifyication {
+    padding: 0 1.5rem;
+    background-color: #444455;
+    justify-content: space-between;
+}
+
+// Thanh filter
+.home_button_filter {
+    height: 3rem;
+    border: none;
+    background-color: #444455;
+    color: var(--text-color);
+}
+
+.home_filter_type {
+    width: 75%;
+    aspect-ratio: 1/1;
+    font-size: 0.9rem;
+    color: var(--text-color);
+    background-color: #555571;
+    border: 1px solid transparent;
+    border-radius: 10px;
+}
+
+.type_active {
+    border-color: #4defe5;
+}
+
+// Thanh todostask, processing, done
+.home_content_header {
+    color: var(--text-color);
+    background-color: #4e4e5e;
+    height: 3rem;
+}

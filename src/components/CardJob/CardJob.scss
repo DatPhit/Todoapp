@@ -1,0 +1,29 @@
+// Card
+.CardJob_wrapper {
+    margin-bottom: 1rem;
+    min-height: 9rem;
+    padding: 12px;
+    border-radius: 10px;
+    border: 1px solid transparent;
+}
+
+.priority {
+    border-color: red;
+}
+
+.CardJob_head {
+    cursor: pointer;
+    user-select: none;
+
+    &:hover {
+        opacity: 0.8;
+    }
+}
+
+.CardJob_IconAngles {
+    transition: transform 0.2s linear;
+}
+
+.rotated {
+    transform: rotate(180deg);
+}
