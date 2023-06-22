@@ -1,0 +1,34 @@
+// Thanh filter
+.filter_button {
+    height: 3rem;
+    border: none;
+    background-color: #444455;
+    color: var(--text-color);
+}
+
+.filter_type {
+    width: 75%;
+    aspect-ratio: 1/1;
+    font-size: 0.9rem;
+    color: var(--text-color);
+    background-color: #555571;
+    border: 1px solid transparent;
+    border-radius: 10px;
+}
+
+.type_active {
+    border-color: #4defe5;
+}
+
+.filter_dropdown {
+    padding: 1rem;
+    position: absolute;
+    left: 110%;
+    bottom: -100%;
+    border-radius: 10px;
+
+    min-height: 22rem;
+    min-width: 60vw;
+    z-index: 5;
+    //     style={{ minHeight: '5rem', minWidth: '10rem' }};
+}

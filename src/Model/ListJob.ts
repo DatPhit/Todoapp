@@ -139,7 +139,7 @@ export const ListJob: ListJobProps[] = [
         description: 'Luyện tập thể dục hàng ngày để duy trì sức khỏe',
         project: 'Sức khỏe',
         type: 'Việc cá nhân',
-        priority: false,
+        priority: true,
         groupname: '',
     },
     {

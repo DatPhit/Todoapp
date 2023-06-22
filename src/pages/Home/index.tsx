@@ -7,7 +7,12 @@ import './Home.scss';
 import JobSmall from '../../components/JobSmall/JobSmall';
 import Notification from '../../components/Notification/Notification';
 import CardJob from '../../components/CardJob/CardJob';
-import { doneListSelector, processListSelector, todoListSelector } from '../../redux/selectors';
+import {
+    doneListSelector,
+    filterListSelector,
+    processListSelector,
+    todoListSelector,
+} from '../../redux/selectors';
 import { ListJobProps } from '../../Model/ListJob';
 import Filter from '../../components/Filter/Filter';
 
@@ -15,7 +20,17 @@ function Home() {
     // Redux
     const todoList = useSelector(todoListSelector);
     const processList = useSelector(processListSelector);
-    const doneList = useSelector(doneListSelector);
+    // const doneList = useSelector(doneListSelector);
+    const todoListFilter: ListJobProps[] = [];
+    const processListFilter: ListJobProps[] = [];
+    const doneListFilter: ListJobProps[] = [];
+    const list = useSelector(filterListSelector);
+
+    list.map((job) => {
+        if (job.status === 'Todo') todoListFilter.push(job);
+        if (job.status === 'Processing') processListFilter.push(job);
+        if (job.status === 'Done') doneListFilter.push(job);
+    });
     const notDoneList = todoList.concat(processList);
 
     // Việc cá nhân chưa hoàn thành
@@ -100,7 +115,7 @@ function Home() {
                                     className="ms-1 center small fw-medium text-bg-secondary rounded-circle"
                                     style={{ width: '1.6rem', height: '1.6rem' }}
                                 >
-                                    {todoList.length}
+                                    {todoListFilter.length}
                                 </span>
                             </div>
                             <div className="d-flex align-items-center">
@@ -113,7 +128,7 @@ function Home() {
                                         backgroundColor: '#4e677b',
                                     }}
                                 >
-                                    {processList.length}
+                                    {processListFilter.length}
                                 </span>
                             </div>
                             <div className="d-flex align-items-center">
@@ -127,7 +142,7 @@ function Home() {
                                         color: '#5eff5a',
                                     }}
                                 >
-                                    {doneList.length}
+                                    {doneListFilter.length}
                                 </span>
                             </div>
                         </div>
@@ -141,7 +156,7 @@ function Home() {
                                 style={{ width: '32.5%', height: '63.8vh' }}
                             >
                                 {/* Card */}
-                                {todoList.map((TodoJob, index) => (
+                                {todoListFilter.map((TodoJob, index) => (
                                     <CardJob Job={TodoJob} key={index} index={index} />
                                 ))}
                             </div>
@@ -152,7 +167,7 @@ function Home() {
                                 style={{ width: '32.5%', height: '63.8vh' }}
                             >
                                 {/* Card */}
-                                {processList.map((ProcessingJob, index) => (
+                                {processListFilter.map((ProcessingJob, index) => (
                                     <CardJob Job={ProcessingJob} key={index} index={index} />
                                 ))}
                             </div>
@@ -163,7 +178,7 @@ function Home() {
                                 style={{ width: '32.5%', height: '63.8vh' }}
                             >
                                 {/* Card */}
-                                {doneList.map((DoneJob, index) => (
+                                {doneListFilter.map((DoneJob, index) => (
                                     <CardJob Job={DoneJob} key={index} />
                                 ))}
                             </div>

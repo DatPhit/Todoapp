@@ -11,17 +11,16 @@ export const DoneJobs = ListJob.filter((Job: ListJobProps) => Job.status === 'Do
 //     (Job: ListJobProps) => Job.type === 'Việc nhóm' && Job.status !== 'Done',
 // );
 
-const listProjectJobs: string[] = [];
+export const listProjectJobs: string[] = [];
 ListJob.forEach((job) => {
     if (!listProjectJobs.includes(job.project)) {
         listProjectJobs.push(job.project);
     }
 });
 
-const listGroupNameJobs: string[] = [];
+export const listGroupNameJobs: string[] = [];
 ListJob.forEach((job) => {
     if (!listGroupNameJobs.includes(job.groupname) && job.type === 'Việc nhóm') {
         listGroupNameJobs.push(job.groupname);
     }
 });
-export { listProjectJobs, listGroupNameJobs };

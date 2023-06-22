@@ -2,12 +2,14 @@ import { configureStore } from '@reduxjs/toolkit';
 import todoSliceReducer from '../pages/Home/todoSlice';
 import procesSliceReducer from '../pages/Home/processSlice';
 import doneSliceReducer from '../pages/Home/doneSlice';
+import filterReducer from '../components/Filter/FilterSlice';
 
 const store = configureStore({
     reducer: {
         todoList: todoSliceReducer,
         processList: procesSliceReducer,
         doneList: doneSliceReducer,
+        filter: filterReducer,
     },
 });
 

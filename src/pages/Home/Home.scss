@@ -21,28 +21,6 @@
     justify-content: space-between;
 }
 
-// Thanh filter
-.home_button_filter {
-    height: 3rem;
-    border: none;
-    background-color: #444455;
-    color: var(--text-color);
-}
-
-.home_filter_type {
-    width: 75%;
-    aspect-ratio: 1/1;
-    font-size: 0.9rem;
-    color: var(--text-color);
-    background-color: #555571;
-    border: 1px solid transparent;
-    border-radius: 10px;
-}
-
-.type_active {
-    border-color: #4defe5;
-}
-
 // Thanh todostask, processing, done
 .home_content_header {
     color: var(--text-color);
