@@ -381,12 +381,8 @@ function Filter() {
                         </Form.Group> */}
                         </Form>
                         <div className="position-absolute end-1 bottom-3">
-                            <Button
-                                variant="secondary"
-                                className="me-3"
-                                onClick={handleCancelFilter}
-                            >
-                                Huỷ bỏ
+                            <Button variant="danger" className="me-3" onClick={handleCancelFilter}>
+                                Xóa bộ lọc
                             </Button>
                             <Button onClick={() => setShowFilter(false)}>Xong</Button>
                         </div>

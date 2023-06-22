@@ -48,7 +48,6 @@ export const filterListSelector = createSelector(
                 job.task.includes(searchValue) &&
                 job.project.includes(project) &&
                 job.groupname.includes(groupname) &&
-                // Deadline Date bị clear bởi user
                 (deadlineDate !== '' ? job.deadline <= deadlineDate : true)
             ) {
                 if (type === 'ALL') {

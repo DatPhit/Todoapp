@@ -15,23 +15,27 @@ import {
 } from '../../redux/selectors';
 import { ListJobProps } from '../../Model/ListJob';
 import Filter from '../../components/Filter/Filter';
+import { useEffect } from 'react';
 
 function Home() {
     // Redux
     const todoList = useSelector(todoListSelector);
     const processList = useSelector(processListSelector);
     // const doneList = useSelector(doneListSelector);
+    const list = useSelector(filterListSelector);
     const todoListFilter: ListJobProps[] = [];
     const processListFilter: ListJobProps[] = [];
     const doneListFilter: ListJobProps[] = [];
-    const list = useSelector(filterListSelector);
 
     list.map((job) => {
         if (job.status === 'Todo') todoListFilter.push(job);
         if (job.status === 'Processing') processListFilter.push(job);
         if (job.status === 'Done') doneListFilter.push(job);
     });
-    const notDoneList = todoList.concat(processList);
+
+    const notDoneList = todoList
+        .concat(processList)
+        .sort((a, b) => new Date(a.deadline).getTime() - new Date(b.deadline).getTime());
 
     // Việc cá nhân chưa hoàn thành
     const individualJobs = notDoneList.filter(
