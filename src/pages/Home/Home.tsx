@@ -50,63 +50,65 @@ function Home() {
     return (
         <div className="ms-2 me-3">
             {/* Phần đầu của content */}
-            <Row className="gap-2" style={{ height: '29vh' }}>
-                <Col xs={9} className="bg rounded-4">
-                    <Row>
-                        {/* Mục tiêu cá nhân */}
-                        <Col className="home_col_head">
-                            <div className="home_head_content">Công việc cá nhân</div>
-                            <div className="overflow-y-scroll" style={{ height: '80%' }}>
-                                <div className="mt-3 mx-4 ">
-                                    {individualJobs.map((job, index) => (
-                                        <JobSmall job={job} key={index} />
-                                    ))}
+            {false && (
+                <Row className="gap-2" style={{ height: '29vh' }}>
+                    <Col xs={9} className="bg rounded-4">
+                        <Row>
+                            {/* Mục tiêu cá nhân */}
+                            <Col className="home_col_head">
+                                <div className="home_head_content">Công việc cá nhân</div>
+                                <div className="overflow-y-scroll" style={{ height: '80%' }}>
+                                    <div className="mt-3 mx-4 ">
+                                        {individualJobs.map((job, index) => (
+                                            <JobSmall job={job} key={index} />
+                                        ))}
+                                    </div>
                                 </div>
-                            </div>
-                        </Col>
+                            </Col>
 
-                        {/* Mục tiêu nhóm */}
-                        <Col className="home_col_head ms-2">
-                            <div className="home_head_content">Công việc nhóm</div>
-                            <div className="overflow-y-scroll" style={{ height: '80%' }}>
-                                <div className="mt-3 mx-4">
-                                    {groupJobs.map((job, index) => (
-                                        <JobSmall job={job} key={index} />
-                                    ))}
+                            {/* Mục tiêu nhóm */}
+                            <Col className="home_col_head ms-2">
+                                <div className="home_head_content">Công việc nhóm</div>
+                                <div className="overflow-y-scroll" style={{ height: '80%' }}>
+                                    <div className="mt-3 mx-4">
+                                        {groupJobs.map((job, index) => (
+                                            <JobSmall job={job} key={index} />
+                                        ))}
+                                    </div>
                                 </div>
-                            </div>
-                        </Col>
-                    </Row>
-                </Col>
+                            </Col>
+                        </Row>
+                    </Col>
 
-                {/* Notification */}
-                <Col className="bg home_col_head ms-2" style={{ backgroundColor: '#343446' }}>
-                    <div className="home_head_content home_notifyication">
-                        Thông báo
-                        <div className="position-relative">
-                            <FontAwesomeIcon icon={faBell} />
-                            <span className="position-absolute top-20 right-20 translate-middle p-1 bg-danger rounded-circle">
-                                <span className="visually-hidden">New alerts</span>
-                            </span>
+                    {/* Notification */}
+                    <Col className="bg home_col_head ms-2" style={{ backgroundColor: '#343446' }}>
+                        <div className="home_head_content home_notifyication">
+                            Thông báo
+                            <div className="position-relative">
+                                <FontAwesomeIcon icon={faBell} />
+                                <span className="position-absolute top-20 right-20 translate-middle p-1 bg-danger rounded-circle">
+                                    <span className="visually-hidden">New alerts</span>
+                                </span>
+                            </div>
                         </div>
-                    </div>
-                    <div className="overflow-y-scroll" style={{ height: '80%' }}>
-                        <div className="mt-2 mx-3">
-                            <Notification type="success" text="Bạn đã đăng nhập thành công" />
-                            <Notification type="warning" text="Công việc sắp dến hạn" />
-                            <Notification
-                                type="success"
-                                text="Bạn đã thêm công việc mới thành công"
-                            />
-                            <Notification type="danger" text="Công việc  đã quá hạn" />
-                            <Notification type="warning" text="Công việc sắp dến hạn" />
+                        <div className="overflow-y-scroll" style={{ height: '80%' }}>
+                            <div className="mt-2 mx-3">
+                                <Notification type="success" text="Bạn đã đăng nhập thành công" />
+                                <Notification type="warning" text="Công việc sắp dến hạn" />
+                                <Notification
+                                    type="success"
+                                    text="Bạn đã thêm công việc mới thành công"
+                                />
+                                <Notification type="danger" text="Công việc  đã quá hạn" />
+                                <Notification type="warning" text="Công việc sắp dến hạn" />
+                            </div>
                         </div>
-                    </div>
-                </Col>
-            </Row>
+                    </Col>
+                </Row>
+            )}
 
             {/* Phần Content chính */}
-            <div className="mt-3" style={{ height: '69.3vh' }}>
+            <div style={{ height: '100vh' }}>
                 <Row className="h-100">
                     {/* Cột bên trái chứa filter */}
                     <Col xs={1} className="p-0 d-flex flex-column   " style={{ width: '6%' }}>
@@ -161,7 +163,7 @@ function Home() {
 
                             <div
                                 className="overflow-y-scroll"
-                                style={{ width: '32.5%', height: '63.8vh' }}
+                                style={{ width: '32.5%', height: '93vh' }}
                             >
                                 {/* Card */}
                                 {todoListFilter.map((TodoJob, index) => (
@@ -172,7 +174,7 @@ function Home() {
                             {/* Cột Processing */}
                             <div
                                 className="overflow-y-scroll"
-                                style={{ width: '32.5%', height: '63.8vh' }}
+                                style={{ width: '32.5%', height: '93vh' }}
                             >
                                 {/* Card */}
                                 {processListFilter.map((ProcessingJob, index) => (
@@ -183,7 +185,7 @@ function Home() {
                             {/* Cột Done */}
                             <div
                                 className="overflow-y-scroll"
-                                style={{ width: '32.5%', height: '63.8vh' }}
+                                style={{ width: '32.5%', height: '93vh' }}
                             >
                                 {/* Card */}
                                 {doneListFilter.map((DoneJob, index) => (

@@ -1,6 +1,6 @@
 import { ReactNode } from 'react';
 import Container from 'react-bootstrap/Container';
-import Taskbar from './Taskbar';
+import Taskbar from './Taskbar/Taskbar';
 
 interface DefaultLayoutProps {
     children?: ReactNode;
