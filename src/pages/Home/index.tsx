@@ -92,10 +92,14 @@ function Home() {
                     </div>
                     <div className="overflow-y-scroll" style={{ height: '80%' }}>
                         <div className="mt-2 mx-3">
-                            <Notification />
-                            <Notification />
-                            <Notification />
-                            <Notification />
+                            <Notification type="warning" text="Công việc sắp dến hạn" />
+                            <Notification
+                                type="success"
+                                text="Bạn đã thêm công việc mới thành công"
+                            />
+                            <Notification type="danger" text="Công việc  đã quá hạn" />
+                            <Notification type="success" text="Bạn đã đăng nhập thành công" />
+                            <Notification type="warning" text="Công việc sắp dến hạn" />
                         </div>
                     </div>
                 </Col>

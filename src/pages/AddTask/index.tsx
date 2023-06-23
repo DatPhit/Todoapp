@@ -77,7 +77,7 @@ function AddTask() {
     };
 
     return (
-        <div className="bg-body-tertiary h-100 rounded-0 position-relative">
+        <div className="bg-body-tertiary h-100 rounded-4 position-relative">
             <h2 className="ms-4 pt-3">Thêm công việc mới </h2>
             <hr />
             <Form className="mt-3 mx-4">

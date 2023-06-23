@@ -13,11 +13,14 @@ function DefaultLayout({ children }: DefaultLayoutProps) {
         <Container fluid className="p-0 overflow-hidden">
             <div className="d-flex " style={{ height: '100vh', backgroundColor: 'black' }}>
                 {/* Thanh taskbar */}
-                <div className="bg px-0 rounded-4" style={{ height: '100vh', width: '17.5vw' }}>
+                <div
+                    className="mt-2 ms-2 bg px-0 rounded-4"
+                    style={{ height: '100vh', width: '17.5vw' }}
+                >
                     <Taskbar />
                 </div>
                 {/* Cột content */}
-                <div className="ms-3" style={{ height: '100vh', width: '81.5vw' }}>
+                <div className="ms-3 mt-2" style={{ height: '100vh', width: '81.5vw' }}>
                     {children}
                 </div>
             </div>

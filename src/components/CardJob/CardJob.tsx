@@ -83,7 +83,7 @@ const CardJob: React.FC<CardJobProps> = ({ Job, index }) => {
 
             {/* Card descriptions */}
             <div className="mb-4">
-                <div className="small">{description}</div>
+                <div>{description}</div>
             </div>
 
             {/* Card foot */}

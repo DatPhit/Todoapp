@@ -13,14 +13,20 @@ import {
 import NavItem from '../../../NavbarItem/NavItem';
 import SignOut from '../../../Signout/SignOut';
 import './Taskbar.scss';
+import { useDispatch, useSelector } from 'react-redux';
+import { authenSelector } from '../../../../redux/selectors';
+
 function Taskbar() {
-    const [isSignIn, setIsSignIn] = useState(true);
+    const dispatch = useDispatch();
+    const isLogin = useSelector(authenSelector);
+    console.log(isLogin);
+    // const [isLogin, setisLogin] = useState(true);
     return (
         <div className="d-flex flex-column positon-relative">
             {/* Khung head chứa thông tin đăng nhập hay chưa */}
             <div className="p-2 mt-2 w-100 d-flex align-items-center fs-6 ">
                 {/* Nếu chưa đăng nhập thì hiện comp đky đăng nhập */}
-                {!isSignIn && (
+                {!isLogin && (
                     <>
                         <FontAwesomeIcon icon={faCircleUser} style={{ height: '3.2rem' }} />
                         <Link to="/sign-up" className="taskbar_link ms-2 me-1">
@@ -33,7 +39,7 @@ function Taskbar() {
                     </>
                 )}
                 {/* Nếu đã đăng nhập thì hiện tên, ảnh */}
-                {isSignIn && (
+                {isLogin && (
                     <>
                         <img
                             // https://cdn2.iconfinder.com/data/icons/people-around-the-world/512/10-512.png
@@ -55,7 +61,7 @@ function Taskbar() {
             <div className="mb-5">
                 <NavItem
                     text="Trang chủ"
-                    classN={`${isSignIn ? 'nav_active' : ''}`}
+                    classN={`${isLogin ? 'nav_active' : ''}`}
                     icon={faHouse}
                     href="/"
                 />
@@ -64,8 +70,8 @@ function Taskbar() {
                 <NavItem text="Thêm công việc mới" icon={faPlus} href="/add-task" />
             </div>
 
-            {isSignIn && (
-                <div className="mt-5">
+            {isLogin && (
+                <div className="mt-5 mb-5">
                     <SignOut />
                 </div>
             )}

@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 
 function SignUp() {
     return (
-        <div className="bg h-100">
+        <div className="bg h-100 rounded-4">
             <div className="d-flex justify-content-center">
                 <Form className="" style={{ width: '35%', marginTop: '15vh' }}>
                     <h2 className="text-center mb-3">Đăng ký tài khoản</h2>
