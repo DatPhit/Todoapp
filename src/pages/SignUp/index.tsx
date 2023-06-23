@@ -1,12 +1,16 @@
 import { Form, Button } from 'react-bootstrap';
 import './signup.scss';
 import { Link } from 'react-router-dom';
+import img from '../../images/logo.png';
 
 function SignUp() {
     return (
-        <div className="bg h-100 rounded-4">
-            <div className="d-flex justify-content-center">
-                <Form className="" style={{ width: '35%', marginTop: '15vh' }}>
+        <div className="bg rounded-4" style={{ height: '100vh' }}>
+            <div className="d-flex justify-content-center flex-column align-items-center">
+                <div className="mt-5 center">
+                    <img src={img} alt="logo" className="w-100" />
+                </div>
+                <Form className="" style={{ width: '25%', marginTop: '9vh' }}>
                     <h2 className="text-center mb-3">Đăng ký tài khoản</h2>
                     <Form.Group className="mb-3" controlId="ControlInput1">
                         <Form.Label>Họ và Tên</Form.Label>

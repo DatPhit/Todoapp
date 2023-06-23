@@ -28,7 +28,7 @@ const Notification: React.FC<NotificationProps> = ({ type, text }) => {
                 <div className="ms-2 d-flex flex-column justify-content-between">
                     <div className="small">{text}</div>
                     <div className="" style={{ fontSize: '0.65rem' }}>
-                        17/06/2023 8:30
+                        23/06/2023 15:30
                     </div>
                 </div>
             </div>

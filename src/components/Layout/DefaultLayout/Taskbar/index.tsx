@@ -19,7 +19,6 @@ import { authenSelector } from '../../../../redux/selectors';
 function Taskbar() {
     const dispatch = useDispatch();
     const isLogin = useSelector(authenSelector);
-    console.log(isLogin);
     // const [isLogin, setisLogin] = useState(true);
     return (
         <div className="d-flex flex-column positon-relative">
@@ -58,17 +57,19 @@ function Taskbar() {
             </div>
 
             {/* Các thanh điều hướng */}
-            <div className="mb-5">
-                <NavItem
-                    text="Trang chủ"
-                    classN={`${isLogin ? 'nav_active' : ''}`}
-                    icon={faHouse}
-                    href="/"
-                />
-                <NavItem text="Xem nhóm" icon={faPeopleGroup} href="/group" />
-                <NavItem text="Thông tin cá nhân" icon={faUser} href="/me" />
-                <NavItem text="Thêm công việc mới" icon={faPlus} href="/add-task" />
-            </div>
+            {isLogin && (
+                <div className="mb-5">
+                    <NavItem
+                        text="Trang chủ"
+                        classN={`${isLogin ? 'nav_active' : ''}`}
+                        icon={faHouse}
+                        href="/"
+                    />
+                    <NavItem text="Xem nhóm" icon={faPeopleGroup} href="/group" />
+                    <NavItem text="Thông tin cá nhân" icon={faUser} href="/me" />
+                    <NavItem text="Thêm công việc mới" icon={faPlus} href="/add-task" />
+                </div>
+            )}
 
             {isLogin && (
                 <div className="mt-5 mb-5">

@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import { authenSelector } from '../../redux/selectors';
 import { login } from '../../components/Layout/DefaultLayout/Taskbar/authenSlice';
 import img from '../../images/logo.png';
+import './signin.scss';
 
 function SignIn() {
     const dispatch = useDispatch();
@@ -11,13 +12,13 @@ function SignIn() {
         dispatch(login());
     };
     return (
-        <div className="bg h-100 rounded-4">
+        <div className="bg rounded-4" style={{ height: '100vh' }}>
             <div className="d-flex justify-content-center flex-column align-items-center">
                 <div className="mt-5 center">
                     <img src={img} alt="logo" className="w-100" />
                 </div>
-                <Form className="" style={{ width: '35%', marginTop: '10vh' }}>
-                    <h2 className="text-center mb-3">Vui lòng đăng nhập</h2>
+                <Form className="" style={{ width: '25%', marginTop: '10vh' }}>
+                    <h2 className="text-center mb-3">Đăng nhập</h2>
                     <Form.Group className="mb-3" controlId="ControlInput2">
                         <Form.Label>Nhập địa chỉ email</Form.Label>
                         <Form.Control type="email" placeholder="Enter email" />
@@ -27,13 +28,13 @@ function SignIn() {
                         <Form.Control type="password" placeholder="Enter password" />
                     </Form.Group>
 
-                    <div className="mt-4 text-center w-100" onClick={handleSignIn}>
-                        <Button href="/" className="fs-5 signup_button">
+                    <div className="mt-5 text-center w-100" onClick={handleSignIn}>
+                        <Link to="/" className=" py-3 fs-5 signin_button">
                             Đăng nhập
-                        </Button>
+                        </Link>
                     </div>
                     <div
-                        className="mt-3 d-flex justify-content-center"
+                        className="mt-4 d-flex justify-content-center"
                         style={{ fontSize: '0.9rem' }}
                     >
                         <div>

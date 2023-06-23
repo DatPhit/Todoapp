@@ -16,8 +16,8 @@ interface RouteConfig {
 // public routes
 const publicRoutes: RouteConfig[] = [
     { path: '/', component: Home },
-    { path: '/sign-up', component: SignUp },
-    { path: '/sign-in', component: SignIn },
+    { path: '/sign-up', component: SignUp, layout: null },
+    { path: '/sign-in', component: SignIn, layout: null },
     { path: '/group', component: Group },
     { path: '/me', component: Me },
     { path: '/add-task', component: AddTask },
