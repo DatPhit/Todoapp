@@ -111,45 +111,49 @@ function Home() {
             <div style={{ height: '100vh' }}>
                 <Row className="h-100">
                     {/* Cột bên trái chứa filter */}
-                    <Col xs={1} className="p-0 d-flex flex-column   " style={{ width: '6%' }}>
+                    <Col xs={1} className="p-0 d-flex flex-column" style={{ width: '6%' }}>
                         <Filter />
                     </Col>
 
                     {/* Cột bên phải chứa content chính */}
                     <Col className="ms-3 p-0">
                         {/* Head */}
-                        <div className="home_content_header d-flex justify-content-around align-items-center rounded-3">
-                            <div className="d-flex align-items-center">
-                                <div>To do task</div>
+                        <div className="home_content_header d-flex justify-content-around align-items-center shadow-sm border border-dark-subtle rounded-3">
+                            <div className="d-flex align-items-center fw-medium">
+                                <div>To do </div>
                                 <span
-                                    className="ms-1 center small fw-medium text-bg-secondary rounded-circle"
-                                    style={{ width: '1.6rem', height: '1.6rem' }}
+                                    className="ms-1 center small fw-medium text-white rounded-circle"
+                                    style={{
+                                        width: '1.6rem',
+                                        height: '1.6rem',
+                                        backgroundColor: 'rgb(79 97 112 / 50%)',
+                                    }}
                                 >
                                     {todoListFilter.length}
                                 </span>
                             </div>
-                            <div className="d-flex align-items-center">
-                                <div>In process</div>
+                            <div className="d-flex align-items-center fw-medium">
+                                <div>Processing</div>
                                 <span
-                                    className="ms-1 center small fw-medium text-info rounded-circle"
+                                    className="ms-1 center small fw-medium text-primary rounded-circle"
                                     style={{
                                         width: '1.6rem',
                                         height: '1.6rem',
-                                        backgroundColor: '#4e677b',
+                                        backgroundColor: 'rgb(103 187 255 / 50%)',
                                     }}
                                 >
                                     {processListFilter.length}
                                 </span>
                             </div>
-                            <div className="d-flex align-items-center">
+                            <div className="d-flex align-items-center fw-medium">
                                 <div>Done</div>
                                 <span
                                     className="ms-1 center small fw-medium rounded-circle"
                                     style={{
                                         width: '1.6rem',
                                         height: '1.6rem',
-                                        backgroundColor: '#51715d',
-                                        color: '#5eff5a',
+                                        backgroundColor: 'rgb(50 205 107 / 50%)',
+                                        color: 'rgb(4 64 3)',
                                     }}
                                 >
                                     {doneListFilter.length}

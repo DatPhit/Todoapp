@@ -2,7 +2,7 @@
 .filter_button {
     height: 3rem;
     border: none;
-    background-color: #444455;
+    background-color: var(--background-status-bar);
     color: var(--text-color);
 }
 
@@ -11,13 +11,14 @@
     aspect-ratio: 1/1;
     font-size: 0.9rem;
     color: var(--text-color);
-    background-color: #555571;
-    border: 1px solid transparent;
+    background-color: #d8bfd8;
+    border: 1.5px solid transparent;
     border-radius: 10px;
+    box-shadow: 1px 1px;
 }
 
 .type_active {
-    border-color: #4defe5;
+    border-color: blueviolet;
 }
 
 .filter_dropdown {

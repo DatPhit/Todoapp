@@ -56,7 +56,7 @@ function Filter() {
     return (
         <>
             {/* Button filter */}
-            <div className="position-relative">
+            <div className="position-relative shadow-sm border border-dark-subtle rounded-2">
                 <button
                     className="p-2 center filter_button w-100 fs-6 rounded-2 position-relative"
                     onClick={() => {
@@ -68,7 +68,7 @@ function Filter() {
                     {/* Options Filter */}
                 </button>
                 {showFilter && (
-                    <div className="filter_dropdown bg-white text-dark position-absolute ">
+                    <div className="filter_dropdown border border-dark-subtle shadow bg-white text-dark position-absolute ">
                         <Form>
                             {/* Name task */}
                             <div className="mt-3 mb-4 d-flex align-items-center position-relative">
@@ -391,7 +391,10 @@ function Filter() {
             </div>
 
             {/* Nav lọc công việc theo type */}
-            <div className="bg mt-3 flex-grow-1 d-flex flex-column align-items-center rounded-3">
+            <div
+                className="mt-3 flex-grow-1 d-flex flex-column align-items-center border border-dark-subtle rounded-3"
+                style={{ backgroundColor: 'var(--background-status-bar)' }}
+            >
                 <div className="mt-2 mb-3 fw-medium ">Type</div>
                 <button
                     className="filter_type type_active mb-4"

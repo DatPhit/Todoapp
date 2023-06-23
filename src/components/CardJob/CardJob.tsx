@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import { faAnglesUp, faTag } from '@fortawesome/free-solid-svg-icons';
+import { faAnglesUp, faEllipsis, faTag } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import moment from 'moment';
 import { Badge, ProgressBar } from 'react-bootstrap';
@@ -39,12 +39,12 @@ const CardJob: React.FC<CardJobProps> = ({ Job, index }) => {
 
     return (
         <div
-            className={`CardJob_wrapper position-relative bg ${
+            className={`CardJob_wrapper position-relative shadow bg ${
                 priority && status !== 'Done' ? 'priority' : ''
             }`}
         >
             {/* Badge status */}
-            <button
+            {/* <button
                 onClick={handleChangeStatus}
                 className={`p-1 position-absolute end-3 ${showDetails ? 'top-2' : 'top-5'}`}
                 style={{
@@ -63,6 +63,17 @@ const CardJob: React.FC<CardJobProps> = ({ Job, index }) => {
                 >
                     {status}
                 </Badge>
+            </button> */}
+
+            <button
+                onClick={handleChangeStatus}
+                className={`p-1 position-absolute end-3 ${showDetails ? 'top-2' : 'top-5'}`}
+                style={{
+                    backgroundColor: 'transparent',
+                    border: 'none',
+                }}
+            >
+                <FontAwesomeIcon icon={faEllipsis} size="xl" />
             </button>
 
             {/* Card head */}
@@ -70,8 +81,8 @@ const CardJob: React.FC<CardJobProps> = ({ Job, index }) => {
                 onClick={() => {
                     setShowDetails(!showDetails);
                 }}
-                className="mb-2 CardJob_head d-flex justify-content-start align-items-center"
-                style={{ width: '77%' }}
+                className="mb-2 CardJob_head d-flex justify-content-start align-items-center fs-5"
+                style={{ width: '85%' }}
             >
                 <FontAwesomeIcon
                     className={`CardJob_IconAngles text-danger ${showDetails ? 'rotated' : ''}`}
@@ -93,7 +104,7 @@ const CardJob: React.FC<CardJobProps> = ({ Job, index }) => {
                 }`}
             >
                 <div className="flex-grow-1 position-relative">
-                    <div className="linear-color small position-absolute end-0 bottom-100">
+                    <div className="linear-color  position-absolute end-0 bottom-100">
                         {moment(deadline).format('HH:mm DD-MM-YY')}
                     </div>
                     <ProgressBar
@@ -139,9 +150,9 @@ const CardJob: React.FC<CardJobProps> = ({ Job, index }) => {
                             </button>
                             <div className="d-flex align-items-center">
                                 <FontAwesomeIcon className="text-info" icon={faTag} />
-                                <div className="ms-2">Bước {index + 1}</div>
+                                <div className="ms-2 fw-medium">Bước {index + 1}</div>
                             </div>
-                            <div className="small">{step.name}</div>
+                            <div className="">{step.name}</div>
                         </div>
                     ))}
                     <hr />

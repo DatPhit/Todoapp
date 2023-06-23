@@ -77,10 +77,15 @@ function AddTask() {
     };
 
     return (
-        <div className="bg-body-tertiary h-100 rounded-4 position-relative">
-            <h2 className="ms-4 pt-3">Thêm công việc mới </h2>
-            <hr />
-            <Form className="mt-3 mx-4">
+        <div
+            className="h-100 rounded-4 position-relative"
+            style={{ backgroundColor: '#f0f8ff', marginLeft: '-1rem' }}
+        >
+            <h2 className="ms-5 pt-3" style={{ color: '#8B008B' }}>
+                Thêm công việc mới{' '}
+            </h2>
+            <hr className="ms-5" />
+            <Form className="mt-3 mx-5">
                 <Row>
                     <Col className="addtask_colleft">
                         {/* Type */}

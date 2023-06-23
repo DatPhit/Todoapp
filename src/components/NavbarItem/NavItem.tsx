@@ -27,8 +27,8 @@ const NavItem: React.FC<NavItemProps> = ({ text, classN, icon, href }) => {
             <Button
                 ref={btnRef}
                 variant="dark"
-                className={`nav-button mt-4 fs-6 w-100 d-flex justify-content-start align-items-center position-relative ${classN}`}
-                style={{ backgroundColor: '#464665', minHeight: 70 }}
+                className={`nav-button border text-dark -sm mt-4 fs-6 w-100 d-flex justify-content-start align-items-center position-relative ${classN}`}
+                style={{ backgroundColor: '#E6E6FA', minHeight: 70 }}
             >
                 {icon && (
                     <span className="me-2 fs-6">

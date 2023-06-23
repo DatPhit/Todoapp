@@ -58,7 +58,7 @@ function Taskbar() {
 
             {/* Các thanh điều hướng */}
             {isLogin && (
-                <div className="mb-5">
+                <div className="mb-1">
                     <NavItem
                         text="Trang chủ"
                         classN={`${isLogin ? 'nav_active' : ''}`}

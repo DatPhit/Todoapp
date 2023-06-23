@@ -1,14 +1,15 @@
 // Card
 .CardJob_wrapper {
     margin-bottom: 1rem;
-    min-height: 9rem;
+    min-height: 11rem;
     padding: 12px;
     border-radius: 10px;
-    border: 1px solid transparent;
+    border: 1px solid #33373b;
 }
 
 .priority {
-    border-color: red;
+    border-color: #c71585;
+    border-width: 1.5px;
 }
 
 .CardJob_head {

@@ -11,11 +11,15 @@ function DefaultLayout({ children }: DefaultLayoutProps) {
         /* <Header /> */
 
         <Container fluid className="p-0 overflow-hidden">
-            <div className="d-flex " style={{ height: '100vh', backgroundColor: 'black' }}>
+            <div className="d-flex bg-light" style={{ height: '100vh' }}>
                 {/* Thanh taskbar */}
                 <div
-                    className="mt-2 ms-2 bg px-0 rounded-4"
-                    style={{ height: '100vh', width: '17.5vw' }}
+                    className="mt-2 ms-2 px-0 border border-dark-subtle rounded-4"
+                    style={{
+                        height: '100vh',
+                        width: '17.5vw',
+                        backgroundColor: 'var(--background-color)',
+                    }}
                 >
                     <Taskbar />
                 </div>

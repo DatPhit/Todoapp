@@ -1,10 +1,14 @@
 @import 'normalize.css';
 @import './variable';
 :root {
-    --primary: #363658;
-    // --primary: #acc8bb;
-    --text-color: #fff;
-    --linear-color: linear-gradient(270deg, #4dffdf 0%, #4da1ff 96.35%);
+    // --primary: #363658;
+    // --primary: #f8f8ff;
+    --primary: #f8f8ff;
+    --text-color: #000;
+    // --linear-color: linear-gradient(270deg, #4dffdf 0%, #4da1ff 96.35%);
+    --linear-color: linear-gradient(270deg, #0b0742 0%, #120c6e 100%);
+    --background-color: #f0f8ff;
+    --background-status-bar: #e6e6fa;
 }
 
 * {
