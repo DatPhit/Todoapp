@@ -55,7 +55,7 @@ function Home() {
                     <Row>
                         {/* Mục tiêu cá nhân */}
                         <Col className="home_col_head">
-                            <div className="home_head_content">Mục tiêu cá nhân</div>
+                            <div className="home_head_content">Công việc cá nhân</div>
                             <div className="overflow-y-scroll" style={{ height: '80%' }}>
                                 <div className="mt-3 mx-4 ">
                                     {individualJobs.map((job, index) => (
@@ -67,7 +67,7 @@ function Home() {
 
                         {/* Mục tiêu nhóm */}
                         <Col className="home_col_head ms-2">
-                            <div className="home_head_content">Mục tiêu nhóm</div>
+                            <div className="home_head_content">Công việc nhóm</div>
                             <div className="overflow-y-scroll" style={{ height: '80%' }}>
                                 <div className="mt-3 mx-4">
                                     {groupJobs.map((job, index) => (
