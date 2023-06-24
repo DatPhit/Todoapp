@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import { faAnglesUp, faEllipsis, faTag } from '@fortawesome/free-solid-svg-icons';
+import { faAnglesDown, faEllipsis, faTag } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import moment from 'moment';
 import { Badge, ProgressBar } from 'react-bootstrap';
@@ -23,19 +23,6 @@ const CardJob: React.FC<CardJobProps> = ({ Job, index }) => {
 
     // Redux
     const dispatch = useDispatch();
-
-    const handleChangeStatus = () => {
-        if (status === 'Todo') {
-            dispatch(addProcess(Job));
-            dispatch(deleteTodo(index));
-            dispatch(changeStatusToProcessing());
-        }
-        if (status === 'Processing') {
-            dispatch(addDone(Job));
-            dispatch(deleteProcess(index));
-            dispatch(changeStatusToDone());
-        }
-    };
 
     return (
         <div
@@ -66,7 +53,6 @@ const CardJob: React.FC<CardJobProps> = ({ Job, index }) => {
             </button> */}
 
             <button
-                onClick={handleChangeStatus}
                 className={`p-1 position-absolute end-3 ${showDetails ? 'top-2' : 'top-5'}`}
                 style={{
                     backgroundColor: 'transparent',
@@ -86,7 +72,7 @@ const CardJob: React.FC<CardJobProps> = ({ Job, index }) => {
             >
                 <FontAwesomeIcon
                     className={`CardJob_IconAngles text-danger ${showDetails ? 'rotated' : ''}`}
-                    icon={faAnglesUp}
+                    icon={faAnglesDown}
                     size="lg"
                 />
                 <div className="ms-2 fw-medium">{task}</div>

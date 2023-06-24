@@ -10,8 +10,20 @@ export const todoSlice = createSlice({
         deleteTodo: (state, action) => {
             state.splice(action.payload, 1);
         },
+        changeStatusToTodo: (state, action) => {
+            state[action.payload].status = 'Todo';
+            state[action.payload].steps.forEach((step) => (step.stt = 'Todo'));
+        },
+        changeOrderTodo: (state, action) => {
+            const [item] = state.splice(action.payload.from, 1);
+            state.splice(action.payload.to, 0, item);
+        },
+        moveToTodo: (state, action) => {
+            state.splice(action.payload.index, 0, action.payload.data);
+        },
     },
 });
 
-export const { addTodo, deleteTodo } = todoSlice.actions;
+export const { addTodo, deleteTodo, changeStatusToTodo, changeOrderTodo, moveToTodo } =
+    todoSlice.actions;
 export default todoSlice.reducer;

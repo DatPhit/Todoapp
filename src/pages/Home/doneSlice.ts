@@ -10,14 +10,25 @@ export const doneSlice = createSlice({
         addDone: (state, action: PayloadAction<ListJobProps>) => {
             state.unshift(action.payload);
         },
-        changeStatusToDone: (state) => {
-            state[0].status = 'Done';
-            state[0].steps.forEach((step) => (step.stt = 'Done'));
-            state[0].priority = false;
+        deleteDone: (state, action) => {
+            state.splice(action.payload, 1);
+        },
+        changeStatusToDone: (state, action) => {
+            state[action.payload].status = 'Done';
+            state[action.payload].steps.forEach((step) => (step.stt = 'Done'));
+            state[action.payload].priority = false;
+        },
+        changeOrderDone: (state, action) => {
+            const [item] = state.splice(action.payload.from, 1);
+            state.splice(action.payload.to, 0, item);
+        },
+        moveToDone: (state, action) => {
+            state.splice(action.payload.index, 0, action.payload.data);
         },
     },
 });
 
-export const { addDone, changeStatusToDone } = doneSlice.actions;
+export const { addDone, deleteDone, changeStatusToDone, changeOrderDone, moveToDone } =
+    doneSlice.actions;
 
 export default doneSlice.reducer;

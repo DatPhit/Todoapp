@@ -13,13 +13,26 @@ export const procesSlice = createSlice({
         deleteProcess: (state, action) => {
             state.splice(action.payload, 1);
         },
-        changeStatusToProcessing: (state) => {
-            state[0].status = 'Processing';
-            state[0].steps.forEach((step) => (step.stt = 'Processing'));
+        changeStatusToProcessing: (state, action) => {
+            state[action.payload].status = 'Processing';
+            state[action.payload].steps.forEach((step) => (step.stt = 'Processing'));
+        },
+        changeOrderProcess: (state, action) => {
+            const [item] = state.splice(action.payload.from, 1);
+            state.splice(action.payload.to, 0, item);
+        },
+        moveToProcessing: (state, action) => {
+            state.splice(action.payload.index, 0, action.payload.data);
         },
     },
 });
 
-export const { addProcess, deleteProcess, changeStatusToProcessing } = procesSlice.actions;
+export const {
+    addProcess,
+    deleteProcess,
+    changeStatusToProcessing,
+    changeOrderProcess,
+    moveToProcessing,
+} = procesSlice.actions;
 
 export default procesSlice.reducer;
