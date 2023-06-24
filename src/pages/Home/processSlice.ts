@@ -11,7 +11,10 @@ export const procesSlice = createSlice({
             state.unshift(action.payload);
         },
         deleteProcess: (state, action) => {
-            state.splice(action.payload, 1);
+            state.splice(
+                state.findIndex((job) => job.id === action.payload),
+                1,
+            );
         },
         changeStatusToProcessing: (state, action) => {
             state[action.payload].status = 'Processing';

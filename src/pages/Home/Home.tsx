@@ -35,35 +35,37 @@ function Home() {
         if (job.status === 'Done') doneListFilter.push(job);
     });
 
+    // console.log('todoListFilter: ', todoListFilter);
+    // console.log('processListFilter: ', processListFilter);
+    // console.log('doneListFilter: ', doneListFilter);
+
     // Drag and drop
     const handleDragEnd = (result: DropResult) => {
+        // console.log(result);
         if (!result.destination) return;
 
         // Drag từ cột todo
         if (result.source.droppableId === 'Todo') {
+            const data = todoListFilter.find((job) => job.id.toString() === result.draggableId);
             if (result.destination.droppableId === 'Processing') {
                 dispatch(
                     moveToProcessing({
-                        data: todoListFilter.find(
-                            (job) => job.id.toString() === result.draggableId,
-                        ),
+                        data,
                         index: result.destination.index,
                     }),
                 );
-                dispatch(deleteTodo(result.source.index));
+                dispatch(deleteTodo(data?.id));
                 dispatch(changeStatusToProcessing(result.destination.index));
             }
 
             if (result.destination.droppableId === 'Done') {
                 dispatch(
                     moveToDone({
-                        data: todoListFilter.find(
-                            (job) => job.id.toString() === result.draggableId,
-                        ),
+                        data,
                         index: result.destination.index,
                     }),
                 );
-                dispatch(deleteTodo(result.source.index));
+                dispatch(deleteTodo(data?.id));
                 dispatch(changeStatusToDone(result.destination.index));
             }
 
@@ -79,29 +81,26 @@ function Home() {
 
         // Drag từ cột Process
         if (result.source.droppableId === 'Processing') {
+            const data = processListFilter.find((job) => job.id.toString() === result.draggableId);
             if (result.destination.droppableId === 'Todo') {
                 dispatch(
                     moveToTodo({
-                        data: processListFilter.find(
-                            (job) => job.id.toString() === result.draggableId,
-                        ),
+                        data,
                         index: result.destination.index,
                     }),
                 );
-                dispatch(deleteProcess(result.source.index));
+                dispatch(deleteProcess(data?.id));
                 dispatch(changeStatusToTodo(result.destination.index));
             }
 
             if (result.destination.droppableId === 'Done') {
                 dispatch(
                     moveToDone({
-                        data: processListFilter.find(
-                            (job) => job.id.toString() === result.draggableId,
-                        ),
+                        data,
                         index: result.destination.index,
                     }),
                 );
-                dispatch(deleteProcess(result.source.index));
+                dispatch(deleteProcess(data?.id));
                 dispatch(changeStatusToDone(result.destination.index));
             }
 
@@ -117,29 +116,26 @@ function Home() {
 
         // Drag từ cột Done
         if (result.source.droppableId === 'Done') {
+            const data = doneListFilter.find((job) => job.id.toString() === result.draggableId);
             if (result.destination.droppableId === 'Processing') {
                 dispatch(
                     moveToProcessing({
-                        data: doneListFilter.find(
-                            (job) => job.id.toString() === result.draggableId,
-                        ),
+                        data,
                         index: result.destination.index,
                     }),
                 );
-                dispatch(deleteDone(result.source.index));
+                dispatch(deleteDone(data?.id));
                 dispatch(changeStatusToProcessing(result.destination.index));
             }
 
             if (result.destination.droppableId === 'Todo') {
                 dispatch(
                     moveToTodo({
-                        data: doneListFilter.find(
-                            (job) => job.id.toString() === result.draggableId,
-                        ),
+                        data,
                         index: result.destination.index,
                     }),
                 );
-                dispatch(deleteDone(result.source.index));
+                dispatch(deleteDone(data?.id));
                 dispatch(changeStatusToTodo(result.destination.index));
             }
 

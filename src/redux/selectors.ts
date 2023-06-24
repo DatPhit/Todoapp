@@ -67,7 +67,7 @@ export const filterListSelector = createSelector(
                         ? job.priority === true
                         : job.priority === false)
                 );
-            }
+            } else return null;
         });
     },
 );

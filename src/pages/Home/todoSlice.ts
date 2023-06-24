@@ -8,7 +8,10 @@ export const todoSlice = createSlice({
             state.unshift(action.payload);
         },
         deleteTodo: (state, action) => {
-            state.splice(action.payload, 1);
+            state.splice(
+                state.findIndex((job) => job.id === action.payload),
+                1,
+            );
         },
         changeStatusToTodo: (state, action) => {
             state[action.payload].status = 'Todo';

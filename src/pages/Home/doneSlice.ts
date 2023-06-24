@@ -11,7 +11,10 @@ export const doneSlice = createSlice({
             state.unshift(action.payload);
         },
         deleteDone: (state, action) => {
-            state.splice(action.payload, 1);
+            state.splice(
+                state.findIndex((job) => job.id === action.payload),
+                1,
+            );
         },
         changeStatusToDone: (state, action) => {
             state[action.payload].status = 'Done';

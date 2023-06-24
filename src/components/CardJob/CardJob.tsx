@@ -3,14 +3,11 @@ import { faAnglesDown, faEllipsis, faTag } from '@fortawesome/free-solid-svg-ico
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import moment from 'moment';
 import { Badge, ProgressBar } from 'react-bootstrap';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 
 import './CardJob.scss';
 import { ListJobProps } from '../../Model/ListJob';
-import { addProcess, changeStatusToProcessing, deleteProcess } from '../../pages/Home/processSlice';
-import { deleteTodo } from '../../pages/Home/todoSlice';
-import { addDone, changeStatusToDone } from '../../pages/Home/doneSlice';
 
 interface CardJobProps {
     Job: ListJobProps;
