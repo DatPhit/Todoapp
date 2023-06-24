@@ -18,7 +18,7 @@ interface CardJobProps {
 }
 const CardJob: React.FC<CardJobProps> = ({ Job, index }) => {
     const [showDetails, setShowDetails] = useState(false);
-    const { id, task, status, deadline, steps, description, project, type, priority, groupname } =
+    const { id, task, status, deadline, steps, description, workplace, type, priority, groupname } =
         Job;
 
     // Redux
@@ -142,19 +142,19 @@ const CardJob: React.FC<CardJobProps> = ({ Job, index }) => {
                         </div>
                     ))}
                     <hr />
-                    {/* Types, Group name, Project name */}
+                    {/* Types, Group name, Workplace */}
                     <div className="d-flex flex-column">
                         <div className="d-inline-flex">
-                            <div className="me-1 fw-medium">Project:</div>
-                            {project}
+                            <div className="me-1 fw-medium">Nơi làm việc:</div>
+                            {workplace}
                         </div>
                         <div className="d-inline-flex">
-                            <div className="me-1 fw-medium">Type:</div>
+                            <div className="me-1 fw-medium">Phân loại:</div>
                             {type}
                         </div>
                         {type === 'Việc nhóm' && (
                             <div className="d-inline-flex">
-                                <div className="me-1 fw-medium">Group name:</div>
+                                <div className="me-1 fw-medium">Tên nhóm:</div>
                                 {groupname}
                             </div>
                         )}

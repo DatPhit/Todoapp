@@ -1,8 +1,8 @@
 import { faPlus } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { useEffect, useRef, useState } from 'react';
+import { useRef, useState } from 'react';
 import { Button, Col, Form, Row } from 'react-bootstrap';
-import { listGroupNameJobs, listProjectJobs } from '../../Services/ProjectsService';
+import { listGroupNameJobs, listWorkplaceJobs } from '../../Services/ProjectsService';
 
 import { addTodo } from '../Home/todoSlice';
 import { useDispatch } from 'react-redux';
@@ -14,7 +14,7 @@ function AddTask() {
     const [task, setTask] = useState('');
     const [deadline, setDeadline] = useState('');
     const [description, setDescription] = useState('');
-    const [project, setProject] = useState('');
+    const [workplace, setWorkplace] = useState('');
     const [type, setType] = useState('Việc cá nhân');
     const [priority, setPriority] = useState<boolean>(false);
     const [stepValues, setStepValues] = useState(['', '']);
@@ -67,7 +67,7 @@ function AddTask() {
                 deadline,
                 steps,
                 description,
-                project,
+                workplace,
                 type,
                 priority,
                 groupname,
@@ -130,18 +130,18 @@ function AddTask() {
                         </Button>
                     </Col>
                     <Col className="position-relative">
-                        {/* Project */}
+                        {/* workplace */}
                         <div className="mb-3 d-flex">
-                            <div className="w-25">Project</div>
+                            <div className="w-25">Workplace</div>
                             <Form.Control
-                                list="optionsProject"
-                                value={project}
-                                onChange={(e) => setProject(e.target.value)}
+                                list="optionsworkplace"
+                                value={workplace}
+                                onChange={(e) => setWorkplace(e.target.value)}
                             />
                         </div>
-                        <datalist id="optionsProject">
-                            {listProjectJobs.map((project, index) => (
-                                <option value={project} key={index} />
+                        <datalist id="optionsworkplace">
+                            {listWorkplaceJobs.map((workplace, index) => (
+                                <option value={workplace} key={index} />
                             ))}
                         </datalist>
 

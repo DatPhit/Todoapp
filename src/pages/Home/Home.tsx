@@ -101,7 +101,7 @@ function Home() {
                         index: result.destination.index,
                     }),
                 );
-                dispatch(deleteTodo(result.source.index));
+                dispatch(deleteProcess(result.source.index));
                 dispatch(changeStatusToDone(result.destination.index));
             }
 
@@ -199,12 +199,12 @@ function Home() {
                         {/* Head */}
                         <div className="home_content_header d-flex justify-content-around align-items-center shadow-sm border border-dark-subtle rounded-3">
                             <div className="d-flex align-items-center fw-medium">
-                                <div>To do </div>
+                                <div className="fs-5">To do </div>
                                 <span
-                                    className="ms-1 center small fw-medium text-white rounded-circle"
+                                    className="ms-1 center fw-medium text-white rounded-circle"
                                     style={{
-                                        width: '1.6rem',
-                                        height: '1.6rem',
+                                        width: '1.8rem',
+                                        height: '1.8rem',
                                         backgroundColor: 'rgb(79 97 112 / 50%)',
                                     }}
                                 >
@@ -212,12 +212,12 @@ function Home() {
                                 </span>
                             </div>
                             <div className="d-flex align-items-center fw-medium">
-                                <div>Processing</div>
+                                <div className="fs-5">Processing</div>
                                 <span
-                                    className="ms-1 center small fw-medium text-primary rounded-circle"
+                                    className="ms-1 center fw-medium text-primary rounded-circle"
                                     style={{
-                                        width: '1.6rem',
-                                        height: '1.6rem',
+                                        width: '1.8rem',
+                                        height: '1.8rem',
                                         backgroundColor: 'rgb(103 187 255 / 50%)',
                                     }}
                                 >
@@ -225,12 +225,12 @@ function Home() {
                                 </span>
                             </div>
                             <div className="d-flex align-items-center fw-medium">
-                                <div>Done</div>
+                                <div className="fs-5">Done</div>
                                 <span
-                                    className="ms-1 center small fw-medium rounded-circle"
+                                    className="ms-1 center fw-medium rounded-circle"
                                     style={{
-                                        width: '1.6rem',
-                                        height: '1.6rem',
+                                        width: '1.8rem',
+                                        height: '1.8rem',
                                         backgroundColor: 'rgb(50 205 107 / 50%)',
                                         color: 'rgb(4 64 3)',
                                     }}

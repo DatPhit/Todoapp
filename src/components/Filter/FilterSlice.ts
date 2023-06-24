@@ -6,7 +6,7 @@ export const filterSlice = createSlice({
         type: 'ALL', // radio
         deadlineDate: '2030-06-15', // date, ascending, descending
         deadlineAsDe: '', // date, ascending, descending
-        project: '',
+        workplace: '',
         priority: 'not', //radio
         groupname: '',
     },
@@ -23,8 +23,8 @@ export const filterSlice = createSlice({
         deadlineAsDeFilterChange: (state, action) => {
             state.deadlineAsDe = action.payload;
         },
-        projectFilterChange: (state, action) => {
-            state.project = action.payload;
+        workplaceFilterChange: (state, action) => {
+            state.workplace = action.payload;
         },
         priorityFilterChange: (state, action) => {
             state.priority = action.payload;
@@ -40,7 +40,7 @@ export const {
     typeFilterChange,
     deadlineDateFilterChange,
     deadlineAsDeFilterChange,
-    projectFilterChange,
+    workplaceFilterChange,
     priorityFilterChange,
     groupnameFilterChange,
 } = filterSlice.actions;

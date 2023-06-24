@@ -9,7 +9,7 @@ export const doneListSelector = (state: RootState) => state.doneList;
 
 export const filterTypeSelector = (state: RootState) => state.filter.type;
 export const filterSearchSelector = (state: RootState) => state.filter.search;
-export const filterProjectSelector = (state: RootState) => state.filter.project;
+export const filterWorkplaceSelector = (state: RootState) => state.filter.workplace;
 export const filterGroupnameSelector = (state: RootState) => state.filter.groupname;
 export const filterPrioritySelector = (state: RootState) => state.filter.priority;
 export const filterDeadlineDateSelector = (state: RootState) => state.filter.deadlineDate;
@@ -21,7 +21,7 @@ export const filterListSelector = createSelector(
     doneListSelector,
     filterTypeSelector,
     filterSearchSelector,
-    filterProjectSelector,
+    filterWorkplaceSelector,
     filterGroupnameSelector,
     filterPrioritySelector,
     filterDeadlineDateSelector,
@@ -32,7 +32,7 @@ export const filterListSelector = createSelector(
         doneList,
         type,
         searchValue,
-        project,
+        workplace,
         groupname,
         priority,
         deadlineDate,
@@ -48,7 +48,7 @@ export const filterListSelector = createSelector(
         return list.filter((job) => {
             if (
                 job.task.includes(searchValue) &&
-                job.project.includes(project) &&
+                job.workplace.includes(workplace) &&
                 job.groupname.includes(groupname) &&
                 (deadlineDate !== '' ? job.deadline <= deadlineDate : true)
             ) {

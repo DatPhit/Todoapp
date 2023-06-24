@@ -7,13 +7,13 @@ import {
     deadlineDateFilterChange,
     groupnameFilterChange,
     priorityFilterChange,
-    projectFilterChange,
+    workplaceFilterChange,
     searchFilterChange,
     typeFilterChange,
 } from './FilterSlice';
 import './Filter.scss';
 import { Button, Col, Form, Row } from 'react-bootstrap';
-import { listGroupNameJobs, listProjectJobs } from '../../Services/ProjectsService';
+import { listGroupNameJobs, listWorkplaceJobs } from '../../Services/ProjectsService';
 
 function Filter() {
     const [showFilter, setShowFilter] = useState(false);
@@ -22,7 +22,7 @@ function Filter() {
     const [type, setType] = useState('ALL');
     const [deadlineDate, setDeadlineDate] = useState('2030-06-15');
     const [deadlineAsDe, setDeadlineAsDe] = useState('');
-    const [project, setProject] = useState('');
+    const [workplace, setWorkplace] = useState('');
     const [priority, setPriority] = useState('not');
     const [groupname, setGroupname] = useState('');
 
@@ -41,14 +41,14 @@ function Filter() {
         setType('ALL');
         setDeadlineDate('2030-06-15');
         setDeadlineAsDe('');
-        setProject('');
+        setWorkplace('');
         setPriority('not');
         setGroupname('');
         dispatch(deadlineAsDeFilterChange(''));
         dispatch(deadlineDateFilterChange('2030-06-15'));
         dispatch(groupnameFilterChange(''));
         dispatch(priorityFilterChange('not'));
-        dispatch(projectFilterChange(''));
+        dispatch(workplaceFilterChange(''));
         dispatch(searchFilterChange(''));
         dispatch(typeFilterChange('ALL'));
         setShowFilter(false);
@@ -56,7 +56,7 @@ function Filter() {
     return (
         <>
             {/* Button filter */}
-            <div className="position-relative shadow-sm border border-dark-subtle rounded-2">
+            <div className="position-relative shadow-lg border border-dark-subtle rounded-2">
                 <button
                     className="p-2 center filter_button w-100 fs-6 rounded-2 position-relative"
                     onClick={() => {
@@ -97,36 +97,36 @@ function Filter() {
                             </div>
 
                             <Row className="mb-2">
-                                {/* Project */}
+                                {/* workplace */}
                                 <Col>
                                     <div className="mb-3 d-flex align-items-center position-relative">
-                                        <label htmlFor="project" className="w-25">
-                                            Project
+                                        <label htmlFor="workplace" className="w-25">
+                                            Workplace
                                         </label>
                                         <Form.Control
-                                            id="project"
-                                            list="optionsProject"
-                                            placeholder="Enter project name"
-                                            value={project}
+                                            id="workplace"
+                                            list="optionsworkplace"
+                                            placeholder="Enter workplace name"
+                                            value={workplace}
                                             onChange={(e) => {
-                                                setProject(e.target.value);
-                                                dispatch(projectFilterChange(e.target.value));
+                                                setWorkplace(e.target.value);
+                                                dispatch(workplaceFilterChange(e.target.value));
                                             }}
                                         />
-                                        {project && (
+                                        {workplace && (
                                             <FontAwesomeIcon
                                                 icon={faXmark}
                                                 onClick={() => {
-                                                    setProject('');
-                                                    dispatch(projectFilterChange(''));
+                                                    setWorkplace('');
+                                                    dispatch(workplaceFilterChange(''));
                                                 }}
                                                 className="p-2 position-absolute end-1"
                                             />
                                         )}
                                     </div>
-                                    <datalist id="optionsProject">
-                                        {listProjectJobs.map((project, index) => (
-                                            <option value={project} key={index} />
+                                    <datalist id="optionsworkplace">
+                                        {listWorkplaceJobs.map((workplace, index) => (
+                                            <option value={workplace} key={index} />
                                         ))}
                                     </datalist>
                                 </Col>
