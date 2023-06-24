@@ -1,27 +1,29 @@
 import { Col, Row } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBell } from '@fortawesome/free-solid-svg-icons';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 import './Home.scss';
-import JobSmall from '../../components/JobSmall/JobSmall';
 import Notification from '../../components/Notification/Notification';
 import CardJob from '../../components/CardJob/CardJob';
-import {
-    doneListSelector,
-    filterListSelector,
-    processListSelector,
-    todoListSelector,
-} from '../../redux/selectors';
+import { filterListSelector } from '../../redux/selectors';
 import { ListJobProps } from '../../Model/ListJob';
 import Filter from '../../components/Filter/Filter';
-import { useEffect } from 'react';
+
+import { DragDropContext, Draggable, DropResult, Droppable } from '@hello-pangea/dnd';
+import { changeOrderTodo, changeStatusToTodo, deleteTodo, moveToTodo } from './todoSlice';
+import {
+    changeOrderProcess,
+    changeStatusToProcessing,
+    deleteProcess,
+    moveToProcessing,
+} from './processSlice';
+import { changeOrderDone, changeStatusToDone, deleteDone, moveToDone } from './doneSlice';
 
 function Home() {
     // Redux
-    const todoList = useSelector(todoListSelector);
-    const processList = useSelector(processListSelector);
-    // const doneList = useSelector(doneListSelector);
+    const dispatch = useDispatch();
+
     const list = useSelector(filterListSelector);
     const todoListFilter: ListJobProps[] = [];
     const processListFilter: ListJobProps[] = [];
@@ -33,53 +35,130 @@ function Home() {
         if (job.status === 'Done') doneListFilter.push(job);
     });
 
-    const notDoneList = todoList
-        .concat(processList)
-        .sort((a, b) => new Date(a.deadline).getTime() - new Date(b.deadline).getTime());
+    // Drag and drop
+    const handleDragEnd = (result: DropResult) => {
+        if (!result.destination) return;
 
-    // Việc cá nhân chưa hoàn thành
-    const individualJobs = notDoneList.filter(
-        (Job: ListJobProps) => Job.type === 'Việc cá nhân' && Job.status !== 'Done',
-    );
+        // Drag từ cột todo
+        if (result.source.droppableId === 'Todo') {
+            if (result.destination.droppableId === 'Processing') {
+                dispatch(
+                    moveToProcessing({
+                        data: todoListFilter.find(
+                            (job) => job.id.toString() === result.draggableId,
+                        ),
+                        index: result.destination.index,
+                    }),
+                );
+                dispatch(deleteTodo(result.source.index));
+                dispatch(changeStatusToProcessing(result.destination.index));
+            }
 
-    // Việc nhóm chưa hoàn thành
-    const groupJobs = notDoneList.filter(
-        (Job: ListJobProps) => Job.type === 'Việc nhóm' && Job.status !== 'Done',
-    );
+            if (result.destination.droppableId === 'Done') {
+                dispatch(
+                    moveToDone({
+                        data: todoListFilter.find(
+                            (job) => job.id.toString() === result.draggableId,
+                        ),
+                        index: result.destination.index,
+                    }),
+                );
+                dispatch(deleteTodo(result.source.index));
+                dispatch(changeStatusToDone(result.destination.index));
+            }
+
+            if (result.destination.droppableId === 'Todo') {
+                dispatch(
+                    changeOrderTodo({
+                        from: result.source.index,
+                        to: result.destination.index,
+                    }),
+                );
+            }
+        }
+
+        // Drag từ cột Process
+        if (result.source.droppableId === 'Processing') {
+            if (result.destination.droppableId === 'Todo') {
+                dispatch(
+                    moveToTodo({
+                        data: processListFilter.find(
+                            (job) => job.id.toString() === result.draggableId,
+                        ),
+                        index: result.destination.index,
+                    }),
+                );
+                dispatch(deleteProcess(result.source.index));
+                dispatch(changeStatusToTodo(result.destination.index));
+            }
+
+            if (result.destination.droppableId === 'Done') {
+                dispatch(
+                    moveToDone({
+                        data: processListFilter.find(
+                            (job) => job.id.toString() === result.draggableId,
+                        ),
+                        index: result.destination.index,
+                    }),
+                );
+                dispatch(deleteTodo(result.source.index));
+                dispatch(changeStatusToDone(result.destination.index));
+            }
+
+            if (result.destination.droppableId === 'Processing') {
+                dispatch(
+                    changeOrderProcess({
+                        from: result.source.index,
+                        to: result.destination.index,
+                    }),
+                );
+            }
+        }
+
+        // Drag từ cột Done
+        if (result.source.droppableId === 'Done') {
+            if (result.destination.droppableId === 'Processing') {
+                dispatch(
+                    moveToProcessing({
+                        data: doneListFilter.find(
+                            (job) => job.id.toString() === result.draggableId,
+                        ),
+                        index: result.destination.index,
+                    }),
+                );
+                dispatch(deleteDone(result.source.index));
+                dispatch(changeStatusToProcessing(result.destination.index));
+            }
+
+            if (result.destination.droppableId === 'Todo') {
+                dispatch(
+                    moveToTodo({
+                        data: doneListFilter.find(
+                            (job) => job.id.toString() === result.draggableId,
+                        ),
+                        index: result.destination.index,
+                    }),
+                );
+                dispatch(deleteDone(result.source.index));
+                dispatch(changeStatusToTodo(result.destination.index));
+            }
+
+            if (result.destination.droppableId === 'Done') {
+                dispatch(
+                    changeOrderDone({
+                        from: result.source.index,
+                        to: result.destination.index,
+                    }),
+                );
+            }
+        }
+    };
 
     return (
         <div className="ms-2 me-3">
             {/* Phần đầu của content */}
             {false && (
                 <Row className="gap-2" style={{ height: '29vh' }}>
-                    <Col xs={9} className="bg rounded-4">
-                        <Row>
-                            {/* Mục tiêu cá nhân */}
-                            <Col className="home_col_head">
-                                <div className="home_head_content">Công việc cá nhân</div>
-                                <div className="overflow-y-scroll" style={{ height: '80%' }}>
-                                    <div className="mt-3 mx-4 ">
-                                        {individualJobs.map((job, index) => (
-                                            <JobSmall job={job} key={index} />
-                                        ))}
-                                    </div>
-                                </div>
-                            </Col>
-
-                            {/* Mục tiêu nhóm */}
-                            <Col className="home_col_head ms-2">
-                                <div className="home_head_content">Công việc nhóm</div>
-                                <div className="overflow-y-scroll" style={{ height: '80%' }}>
-                                    <div className="mt-3 mx-4">
-                                        {groupJobs.map((job, index) => (
-                                            <JobSmall job={job} key={index} />
-                                        ))}
-                                    </div>
-                                </div>
-                            </Col>
-                        </Row>
-                    </Col>
-
                     {/* Notification */}
                     <Col className="bg home_col_head ms-2" style={{ backgroundColor: '#343446' }}>
                         <div className="home_head_content home_notifyication">
@@ -163,39 +242,166 @@ function Home() {
 
                         {/* Todolist */}
                         <div className="mt-3 w-100 h-100 d-flex justify-content-between">
-                            {/* Cột to-do */}
+                            {/* Todo */}
+                            <DragDropContext onDragEnd={handleDragEnd}>
+                                <Droppable droppableId="Todo">
+                                    {(provided, snapshot) => (
+                                        <div
+                                            ref={provided.innerRef}
+                                            className="overflow-y-scroll"
+                                            style={{
+                                                width: '32.5%',
+                                                height: '93vh',
+                                                backgroundColor: snapshot.isDraggingOver
+                                                    ? '#D3D3D3'
+                                                    : 'transparent',
+                                            }}
+                                            {...provided.droppableProps}
+                                        >
+                                            <div>
+                                                {todoListFilter.map((TodoJob, index) => (
+                                                    <Draggable
+                                                        // adding a key is important!
+                                                        key={TodoJob.id}
+                                                        draggableId={TodoJob.id.toString()}
+                                                        index={index}
+                                                    >
+                                                        {(provided) => (
+                                                            <div
+                                                                ref={provided.innerRef}
+                                                                {...provided.draggableProps}
+                                                                {...provided.dragHandleProps}
+                                                            >
+                                                                <CardJob
+                                                                    Job={TodoJob}
+                                                                    index={index}
+                                                                />
+                                                            </div>
+                                                        )}
+                                                    </Draggable>
+                                                ))}
+                                            </div>
+                                            {provided.placeholder}
+                                        </div>
+                                    )}
+                                </Droppable>
 
-                            <div
-                                className="overflow-y-scroll"
-                                style={{ width: '32.5%', height: '93vh' }}
-                            >
-                                {/* Card */}
-                                {todoListFilter.map((TodoJob, index) => (
-                                    <CardJob Job={TodoJob} key={index} index={index} />
-                                ))}
-                            </div>
+                                {/* Processing */}
+                                <Droppable droppableId="Processing">
+                                    {(provided, snapshot) => (
+                                        <div
+                                            ref={provided.innerRef}
+                                            className="overflow-y-scroll"
+                                            style={{
+                                                width: '32.5%',
+                                                height: '93vh',
+                                                backgroundColor: snapshot.isDraggingOver
+                                                    ? '#87CEFA'
+                                                    : 'transparent',
+                                            }}
+                                            {...provided.droppableProps}
+                                        >
+                                            <div>
+                                                {processListFilter.map((ProcessingJob, index) => (
+                                                    <Draggable
+                                                        // adding a key is important!
+                                                        key={ProcessingJob.id}
+                                                        draggableId={ProcessingJob.id.toString()}
+                                                        index={index}
+                                                    >
+                                                        {(provided) => (
+                                                            <div
+                                                                ref={provided.innerRef}
+                                                                {...provided.draggableProps}
+                                                                {...provided.dragHandleProps}
+                                                            >
+                                                                <CardJob
+                                                                    Job={ProcessingJob}
+                                                                    index={index}
+                                                                />
+                                                            </div>
+                                                        )}
+                                                    </Draggable>
+                                                ))}
+                                            </div>
+                                            {provided.placeholder}
+                                        </div>
+                                    )}
+                                </Droppable>
+
+                                {/* Done */}
+                                <Droppable droppableId="Done">
+                                    {(provided, snapshot) => (
+                                        <div
+                                            ref={provided.innerRef}
+                                            className="overflow-y-scroll"
+                                            style={{
+                                                width: '32.5%',
+                                                height: '93vh',
+                                                backgroundColor: snapshot.isDraggingOver
+                                                    ? '#90EE90'
+                                                    : 'transparent',
+                                            }}
+                                            {...provided.droppableProps}
+                                        >
+                                            <div>
+                                                {doneListFilter.map((doneJob, index) => (
+                                                    <Draggable
+                                                        // adding a key is important!
+                                                        key={doneJob.id}
+                                                        draggableId={doneJob.id.toString()}
+                                                        index={index}
+                                                    >
+                                                        {(provided) => (
+                                                            <div
+                                                                ref={provided.innerRef}
+                                                                {...provided.draggableProps}
+                                                                {...provided.dragHandleProps}
+                                                            >
+                                                                <CardJob
+                                                                    Job={doneJob}
+                                                                    index={index}
+                                                                />
+                                                            </div>
+                                                        )}
+                                                    </Draggable>
+                                                ))}
+                                            </div>
+                                            {provided.placeholder}
+                                        </div>
+                                    )}
+                                </Droppable>
+                            </DragDropContext>
+
+                            {/* <div
+                                    className="overflow-y-scroll"
+                                    style={{ width: '32.5%', height: '93vh' }}
+                                >
+                                    {/* Card *
+                                    {todoListFilter.map((TodoJob, index) => (
+                                        <CardJob Job={TodoJob} key={index} index={index} />
+                                    ))}
+                                </div> */}
 
                             {/* Cột Processing */}
-                            <div
+                            {/* <div
                                 className="overflow-y-scroll"
                                 style={{ width: '32.5%', height: '93vh' }}
                             >
-                                {/* Card */}
                                 {processListFilter.map((ProcessingJob, index) => (
                                     <CardJob Job={ProcessingJob} key={index} index={index} />
                                 ))}
-                            </div>
+                            </div> */}
 
                             {/* Cột Done */}
-                            <div
+                            {/* <div
                                 className="overflow-y-scroll"
                                 style={{ width: '32.5%', height: '93vh' }}
                             >
-                                {/* Card */}
                                 {doneListFilter.map((DoneJob, index) => (
                                     <CardJob Job={DoneJob} key={index} />
                                 ))}
-                            </div>
+                            </div> */}
                         </div>
                     </Col>
                 </Row>
