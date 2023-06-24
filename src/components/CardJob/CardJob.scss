@@ -28,3 +28,19 @@
 .rotated {
     transform: rotate(180deg);
 }
+
+.cardjob_button_option {
+    height: 3rem;
+    font-size: 1.2rem;
+    border: 0.5px solid transparent;
+    background-color: var(--background-color);
+
+    &:hover {
+        // color: white;
+        background-color: var(--background-status-bar);
+    }
+}
+
+.cardjob_button_option + .cardjob_button_option {
+    border-top: 0.5px solid gray;
+}

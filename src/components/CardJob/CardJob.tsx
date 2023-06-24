@@ -1,13 +1,16 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import { faAnglesDown, faEllipsis, faTag } from '@fortawesome/free-solid-svg-icons';
+import { faAnglesDown, faEllipsis, faTag, faTrashCan } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import moment from 'moment';
-import { Badge, ProgressBar } from 'react-bootstrap';
-import { useState } from 'react';
+import { Badge, Button, Modal, ProgressBar } from 'react-bootstrap';
+import { useEffect, useRef, useState } from 'react';
 import { useDispatch } from 'react-redux';
 
 import './CardJob.scss';
 import { ListJobProps } from '../../Model/ListJob';
+import { deleteTodo } from '../../pages/Home/todoSlice';
+import { deleteProcess } from '../../pages/Home/processSlice';
+import { deleteDone } from '../../pages/Home/doneSlice';
 
 interface CardJobProps {
     Job: ListJobProps;
@@ -21,43 +24,99 @@ const CardJob: React.FC<CardJobProps> = ({ Job, index }) => {
     // Redux
     const dispatch = useDispatch();
 
+    // handle show button options
+    const [showOptions, setShowOptions] = useState(false);
+    const buttonRef = useRef<HTMLButtonElement>(null);
+
+    const handleMouseDown = () => {
+        setShowOptions(!showOptions);
+    };
+
+    useEffect(() => {
+        const handleDocumentClick = (event: MouseEvent) => {
+            if (buttonRef && !buttonRef.current?.contains(event.target as Node)) {
+                setShowOptions(false);
+            }
+        };
+        document.addEventListener('click', handleDocumentClick);
+
+        return () => {
+            document.removeEventListener('click', handleDocumentClick);
+        };
+    }, [showOptions]);
+
+    // handle show modal when click delete job
+    const [show, setShow] = useState(false);
+
+    const handleClose = () => setShow(false);
+    const handleShow = () => {
+        setShow(true);
+    };
+    const handleDeleteITem = () => {
+        if (status === 'Todo') {
+            dispatch(deleteTodo(id));
+        }
+        if (status === 'Processing') {
+            dispatch(deleteProcess(id));
+        }
+        if (status === 'Done') {
+            dispatch(deleteDone(id));
+        }
+    };
     return (
         <div
             className={`CardJob_wrapper position-relative shadow bg ${
                 priority && status !== 'Done' ? 'priority' : ''
             }`}
         >
-            {/* Badge status */}
-            {/* <button
-                onClick={handleChangeStatus}
-                className={`p-1 position-absolute end-3 ${showDetails ? 'top-2' : 'top-5'}`}
-                style={{
-                    backgroundColor: 'transparent',
-                    border: 'none',
-                }}
-            >
-                <Badge
-                    bg={`${
-                        status === 'Todo'
-                            ? 'secondary'
-                            : status === 'Processing'
-                            ? 'info'
-                            : 'success'
-                    }`}
+            <div className={`position-absolute end-3 ${showDetails ? 'top-2' : 'top-5'}`}>
+                <button
+                    ref={buttonRef}
+                    className={`p-1  `}
+                    style={{
+                        backgroundColor: 'transparent',
+                        border: 'none',
+                    }}
+                    onClick={handleMouseDown}
                 >
-                    {status}
-                </Badge>
-            </button> */}
+                    <FontAwesomeIcon icon={faEllipsis} size="xl" />
+                </button>
+                {showOptions && (
+                    <div
+                        className="z-1 border border-1 border-secondary rounded-3 overflow-hidden d-flex flex-column position-absolute top-10 end-100"
+                        style={{ minWidth: '10rem' }}
+                    >
+                        <button className="cardjob_button_option ">Chỉnh sửa</button>
 
-            <button
-                className={`p-1 position-absolute end-3 ${showDetails ? 'top-2' : 'top-5'}`}
-                style={{
-                    backgroundColor: 'transparent',
-                    border: 'none',
-                }}
-            >
-                <FontAwesomeIcon icon={faEllipsis} size="xl" />
-            </button>
+                        <button className="cardjob_button_option " onClick={handleShow}>
+                            Xóa
+                        </button>
+                        {status === 'Done' && (
+                            <button className="cardjob_button_option ">Đánh giá</button>
+                        )}
+                    </div>
+                )}
+            </div>
+            <Modal show={show} onHide={handleClose}>
+                <Modal.Header closeButton>
+                    <Modal.Title className="d-flex align-items-center">
+                        <FontAwesomeIcon icon={faTrashCan} />
+                        <div className="ms-2"> Xoá công việc</div>
+                    </Modal.Title>
+                </Modal.Header>
+                <Modal.Body className="fs-5">
+                    Bạn có chắc chắn muốn xoá công việc <b>{task}</b> ?
+                </Modal.Body>
+                <Modal.Footer>
+                    <Button variant="secondary" onClick={handleClose}>
+                        Hủy bỏ
+                    </Button>
+
+                    <Button variant="danger" onClick={handleDeleteITem}>
+                        Xóa
+                    </Button>
+                </Modal.Footer>
+            </Modal>
 
             {/* Card head */}
             <div
