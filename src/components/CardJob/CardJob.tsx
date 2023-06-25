@@ -17,6 +17,8 @@ import {
     deleteProcess,
 } from '../../pages/Home/processSlice';
 import { addDone, changeStatusToDone, deleteDone } from '../../pages/Home/doneSlice';
+import ModalEditTask from '../modal/ModalEditTask';
+import ModalDeleteTask from '../modal/ModalDeleteTask';
 
 interface CardJobProps {
     Job: ListJobProps;
@@ -51,23 +53,10 @@ const CardJob: React.FC<CardJobProps> = ({ Job }) => {
     }, [showOptions]);
 
     // handle show modal when click delete job
-    const [show, setShow] = useState(false);
+    const [showModalDeleteTask, setShowModalDeleteTask] = useState(false);
 
-    const handleClose = () => setShow(false);
-    const handleShow = () => {
-        setShow(true);
-    };
-    const handleDeleteITem = () => {
-        if (status === 'Todo') {
-            dispatch(deleteTodo(id));
-        }
-        if (status === 'Processing') {
-            dispatch(deleteProcess(id));
-        }
-        if (status === 'Done') {
-            dispatch(deleteDone(id));
-        }
-    };
+    // handle show modal when click edit job
+    const [showModalEditTask, setShowModalEditTask] = useState(false);
 
     // Xử lý click badge ở cột Processing
     const handleClickBadge = (index: number) => {
@@ -125,9 +114,17 @@ const CardJob: React.FC<CardJobProps> = ({ Job }) => {
                         className="z-1 border border-1 border-secondary rounded-3 overflow-hidden d-flex flex-column position-absolute top-10 end-100"
                         style={{ minWidth: '10rem' }}
                     >
-                        <button className="cardjob_button_option ">Chỉnh sửa</button>
+                        <button
+                            className="cardjob_button_option"
+                            onClick={() => setShowModalEditTask(true)}
+                        >
+                            Chỉnh sửa
+                        </button>
 
-                        <button className="cardjob_button_option " onClick={handleShow}>
+                        <button
+                            className="cardjob_button_option "
+                            onClick={() => setShowModalDeleteTask(true)}
+                        >
                             Xóa
                         </button>
                         {status === 'Done' && (
@@ -136,26 +133,19 @@ const CardJob: React.FC<CardJobProps> = ({ Job }) => {
                     </div>
                 )}
             </div>
-            <Modal show={show} onHide={handleClose}>
-                <Modal.Header closeButton>
-                    <Modal.Title className="d-flex align-items-center">
-                        <FontAwesomeIcon icon={faTrashCan} />
-                        <div className="ms-2"> Xoá công việc</div>
-                    </Modal.Title>
-                </Modal.Header>
-                <Modal.Body className="fs-5">
-                    Bạn có chắc chắn muốn xoá công việc <b>{task}</b> ?
-                </Modal.Body>
-                <Modal.Footer>
-                    <Button variant="secondary" onClick={handleClose}>
-                        Hủy bỏ
-                    </Button>
+            {/* Modal xoá công việc */}
+            <ModalDeleteTask
+                show={showModalDeleteTask}
+                hide={() => setShowModalDeleteTask(false)}
+                job={Job}
+            />
 
-                    <Button variant="danger" onClick={handleDeleteITem}>
-                        Xóa
-                    </Button>
-                </Modal.Footer>
-            </Modal>
+            {/* Modal edit task */}
+            <ModalEditTask
+                job={Job}
+                show={showModalEditTask}
+                hide={() => setShowModalEditTask(false)}
+            />
 
             {/* Card head */}
             <div

@@ -10,6 +10,11 @@ export const procesSlice = createSlice({
         addProcess: (state, action: PayloadAction<ListJobProps>) => {
             state.unshift(action.payload);
         },
+        editProcess: (state, action) => {
+            const index = state.findIndex((job) => job.id === action.payload.id);
+            const data = action.payload.data;
+            state[index] = data;
+        },
         deleteProcess: (state, action) => {
             state.splice(
                 state.findIndex((job) => job.id === action.payload),
@@ -44,6 +49,7 @@ export const procesSlice = createSlice({
 
 export const {
     addProcess,
+    editProcess,
     deleteProcess,
     changeStepStatusToProcessing,
     changeStepStatusToDone,

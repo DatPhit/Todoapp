@@ -10,6 +10,11 @@ export const doneSlice = createSlice({
         addDone: (state, action: PayloadAction<ListJobProps>) => {
             state.unshift(action.payload);
         },
+        editDone: (state, action) => {
+            const index = state.findIndex((job) => job.id === action.payload.id);
+            const data = action.payload.data;
+            state[index] = data;
+        },
         deleteDone: (state, action) => {
             state.splice(
                 state.findIndex((job) => job.id === action.payload),
@@ -30,7 +35,7 @@ export const doneSlice = createSlice({
     },
 });
 
-export const { addDone, deleteDone, changeStatusToDone, changeOrderDone, moveToDone } =
+export const { addDone, editDone, deleteDone, changeStatusToDone, changeOrderDone, moveToDone } =
     doneSlice.actions;
 
 export default doneSlice.reducer;
