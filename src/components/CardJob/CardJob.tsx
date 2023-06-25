@@ -9,14 +9,19 @@ import { useDispatch } from 'react-redux';
 import './CardJob.scss';
 import { ListJobProps } from '../../Model/ListJob';
 import { deleteTodo } from '../../pages/Home/todoSlice';
-import { deleteProcess } from '../../pages/Home/processSlice';
-import { deleteDone } from '../../pages/Home/doneSlice';
+import {
+    addProcess,
+    changeStepStatusToDone,
+    changeStepStatusToProcessing,
+    changeStepStatusToTodo,
+    deleteProcess,
+} from '../../pages/Home/processSlice';
+import { addDone, changeStatusToDone, deleteDone } from '../../pages/Home/doneSlice';
 
 interface CardJobProps {
     Job: ListJobProps;
-    index?: number;
 }
-const CardJob: React.FC<CardJobProps> = ({ Job, index }) => {
+const CardJob: React.FC<CardJobProps> = ({ Job }) => {
     const [showDetails, setShowDetails] = useState(false);
     const { id, task, status, deadline, steps, description, workplace, type, priority, groupname } =
         Job;
@@ -63,6 +68,44 @@ const CardJob: React.FC<CardJobProps> = ({ Job, index }) => {
             dispatch(deleteDone(id));
         }
     };
+
+    // Xử lý click badge ở cột Processing
+    const handleClickBadge = (index: number) => {
+        if (status === 'Processing') {
+            if (steps[index].stt === 'Todo') {
+                dispatch(
+                    changeStepStatusToProcessing({
+                        indexJob: id,
+                        indexStep: index,
+                    }),
+                );
+            }
+            if (steps[index].stt === 'Processing') {
+                dispatch(
+                    changeStepStatusToDone({
+                        indexJob: id,
+                        indexStep: index,
+                    }),
+                );
+            }
+            if (steps[index].stt === 'Done') {
+                dispatch(
+                    changeStepStatusToTodo({
+                        indexJob: id,
+                        indexStep: index,
+                    }),
+                );
+            }
+        }
+    };
+    useEffect(() => {
+        if (steps.every((step) => step.stt === 'Done') && status === 'Processing') {
+            dispatch(addDone(Job));
+            dispatch(deleteProcess(id));
+            dispatch(changeStatusToDone(0));
+        }
+    }, [steps]);
+
     return (
         <div className={`CardJob_wrapper position-relative shadow bg `}>
             <div className={`position-absolute end-3 ${showDetails ? 'top-2' : 'top-5'}`}>
@@ -173,6 +216,7 @@ const CardJob: React.FC<CardJobProps> = ({ Job, index }) => {
                                     backgroundColor: 'transparent',
                                     border: 'none',
                                 }}
+                                onClick={() => handleClickBadge(index)}
                             >
                                 <Badge
                                     bg={`${
@@ -195,7 +239,7 @@ const CardJob: React.FC<CardJobProps> = ({ Job, index }) => {
                     ))}
                     <hr />
                     {/* Types, Group name, Workplace */}
-                    <div className="d-flex flex-column">
+                    <div className="mb-5 d-flex flex-column">
                         <div className="d-flex justify-content-between">
                             <div className="d-inline-flex">
                                 <div className="me-1 fw-medium">Nơi làm việc:</div>

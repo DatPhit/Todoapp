@@ -16,6 +16,18 @@ export const procesSlice = createSlice({
                 1,
             );
         },
+        changeStepStatusToProcessing: (state, action) => {
+            const index = state.findIndex((job) => job.id === action.payload.indexJob);
+            state[index].steps[action.payload.indexStep].stt = 'Processing';
+        },
+        changeStepStatusToDone: (state, action) => {
+            const index = state.findIndex((job) => job.id === action.payload.indexJob);
+            state[index].steps[action.payload.indexStep].stt = 'Done';
+        },
+        changeStepStatusToTodo: (state, action) => {
+            const index = state.findIndex((job) => job.id === action.payload.indexJob);
+            state[index].steps[action.payload.indexStep].stt = 'Todo';
+        },
         changeStatusToProcessing: (state, action) => {
             state[action.payload].status = 'Processing';
             state[action.payload].steps.forEach((step) => (step.stt = 'Processing'));
@@ -33,6 +45,9 @@ export const procesSlice = createSlice({
 export const {
     addProcess,
     deleteProcess,
+    changeStepStatusToProcessing,
+    changeStepStatusToDone,
+    changeStepStatusToTodo,
     changeStatusToProcessing,
     changeOrderProcess,
     moveToProcessing,

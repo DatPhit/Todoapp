@@ -268,10 +268,7 @@ function Home() {
                                                                 {...provided.draggableProps}
                                                                 {...provided.dragHandleProps}
                                                             >
-                                                                <CardJob
-                                                                    Job={TodoJob}
-                                                                    index={index}
-                                                                />
+                                                                <CardJob Job={TodoJob} />
                                                             </div>
                                                         )}
                                                     </Draggable>
@@ -311,10 +308,7 @@ function Home() {
                                                                 {...provided.draggableProps}
                                                                 {...provided.dragHandleProps}
                                                             >
-                                                                <CardJob
-                                                                    Job={ProcessingJob}
-                                                                    index={index}
-                                                                />
+                                                                <CardJob Job={ProcessingJob} />
                                                             </div>
                                                         )}
                                                     </Draggable>
@@ -354,10 +348,7 @@ function Home() {
                                                                 {...provided.draggableProps}
                                                                 {...provided.dragHandleProps}
                                                             >
-                                                                <CardJob
-                                                                    Job={doneJob}
-                                                                    index={index}
-                                                                />
+                                                                <CardJob Job={doneJob} />
                                                             </div>
                                                         )}
                                                     </Draggable>
