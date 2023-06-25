@@ -53,19 +53,11 @@ export const filterListSelector = createSelector(
                 (deadlineDate !== '' ? job.deadline <= deadlineDate : true)
             ) {
                 if (type === 'ALL') {
-                    return priority === 'not'
-                        ? job
-                        : priority === 'true'
-                        ? job.priority === true
-                        : job.priority === false;
+                    return priority === 'not' ? job : job.priority.includes(priority);
                 }
                 return (
                     job.type === type &&
-                    (priority === 'not'
-                        ? job
-                        : priority === 'true'
-                        ? job.priority === true
-                        : job.priority === false)
+                    (priority === 'not' ? job : job.priority.includes(priority))
                 );
             } else return null;
         });

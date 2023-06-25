@@ -64,11 +64,7 @@ const CardJob: React.FC<CardJobProps> = ({ Job, index }) => {
         }
     };
     return (
-        <div
-            className={`CardJob_wrapper position-relative shadow bg ${
-                priority && status !== 'Done' ? 'priority' : ''
-            }`}
-        >
+        <div className={`CardJob_wrapper position-relative shadow bg `}>
             <div className={`position-absolute end-3 ${showDetails ? 'top-2' : 'top-5'}`}>
                 <button
                     ref={buttonRef}
@@ -200,9 +196,12 @@ const CardJob: React.FC<CardJobProps> = ({ Job, index }) => {
                     <hr />
                     {/* Types, Group name, Workplace */}
                     <div className="d-flex flex-column">
-                        <div className="d-inline-flex">
-                            <div className="me-1 fw-medium">Nơi làm việc:</div>
-                            {workplace}
+                        <div className="d-flex justify-content-between">
+                            <div className="d-inline-flex">
+                                <div className="me-1 fw-medium">Nơi làm việc:</div>
+                                {workplace}
+                            </div>
+                            <div className="me-1 fw-medium">{priority}</div>
                         </div>
                         <div className="d-inline-flex">
                             <div className="me-1 fw-medium">Phân loại:</div>

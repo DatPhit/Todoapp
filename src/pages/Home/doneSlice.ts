@@ -19,7 +19,6 @@ export const doneSlice = createSlice({
         changeStatusToDone: (state, action) => {
             state[action.payload].status = 'Done';
             state[action.payload].steps.forEach((step) => (step.stt = 'Done'));
-            state[action.payload].priority = false;
         },
         changeOrderDone: (state, action) => {
             const [item] = state.splice(action.payload.from, 1);

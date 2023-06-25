@@ -228,56 +228,23 @@ function Filter() {
 
                                 {/* Priority */}
                                 <Col className="mb-3 d-flex">
-                                    <div className="w-25">Priority</div>
-                                    <div className="ms-3 d-flex flex-column">
-                                        <div className="d-flex flex-row-reverse justify-content-end align-items-center">
-                                            <label htmlFor="priorityAll" className="ms-1 p-1">
-                                                ALL
-                                            </label>
-                                            <Form.Check
-                                                checked={priority === 'not'}
-                                                id="priorityAll"
-                                                name="priority"
-                                                type="radio"
-                                                value="not"
-                                                onChange={(e) => {
-                                                    setPriority(e.target.value);
-                                                    dispatch(priorityFilterChange(e.target.value));
-                                                }}
-                                            />
-                                        </div>
-                                        <div className="d-flex flex-row-reverse justify-content-end align-items-center">
-                                            <label htmlFor="priorityInvidial" className="ms-1 p-1">
-                                                Yes
-                                            </label>
-                                            <Form.Check
-                                                checked={priority === 'true'}
-                                                id="priorityInvidial"
-                                                name="priority"
-                                                type="radio"
-                                                value="true"
-                                                onChange={(e) => {
-                                                    setPriority(e.target.value);
-                                                    dispatch(priorityFilterChange(e.target.value));
-                                                }}
-                                            />
-                                        </div>
-                                        <div className="d-flex flex-row-reverse justify-content-end align-items-center">
-                                            <label htmlFor="priorityGroup" className="ms-1 p-1">
-                                                No
-                                            </label>
-                                            <Form.Check
-                                                checked={priority === 'false'}
-                                                id="priorityGroup"
-                                                name="priority"
-                                                type="radio"
-                                                value="false"
-                                                onChange={(e) => {
-                                                    setPriority(e.target.value);
-                                                    dispatch(priorityFilterChange(e.target.value));
-                                                }}
-                                            />
-                                        </div>
+                                    <div className="mt-1 w-25">Priority</div>
+                                    <div className="ms-3">
+                                        <Form.Select
+                                            defaultValue={priority}
+                                            aria-label="Default select example"
+                                            onChange={(e) => {
+                                                setPriority(e.target.value);
+                                                dispatch(priorityFilterChange(e.target.value));
+                                            }}
+                                        >
+                                            <option value="">Select priority</option>
+                                            <option value="not">ALL</option>
+                                            <option value="Low">Low</option>
+                                            <option value="Normal">Normal</option>
+                                            <option value="Medium">Medium</option>
+                                            <option value="High">High</option>
+                                        </Form.Select>
                                     </div>
                                 </Col>
 

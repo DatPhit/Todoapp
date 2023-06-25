@@ -20,7 +20,7 @@ export interface ListJobProps {
     description: string;
     workplace: 'Bách khoa' | 'Nhà riêng' | 'Công ty ABC';
     type: 'Việc cá nhân' | 'Việc nhóm';
-    priority: 'highest' | 'high' | 'medium' | 'normal' | 'low';
+    priority: 'High' | 'Medium' | 'Normal' | 'Low';
     groupname: groupsProps | '' | string;
 }
 
@@ -37,7 +37,7 @@ export const ListJob: ListJobProps[] = [
         description: 'Đọc cuốn sách Sapiens về lịch sử nhân loại',
         workplace: 'Nhà riêng',
         type: 'Việc cá nhân',
-        priority: 'highest',
+        priority: 'High',
         groupname: '',
     },
     {
@@ -53,7 +53,7 @@ export const ListJob: ListJobProps[] = [
         description: 'Chuẩn bị và tổ chức buổi họp dự án',
         workplace: 'Bách khoa',
         type: 'Việc nhóm',
-        priority: 'normal',
+        priority: 'Normal',
         groupname: 'Nhóm UI_UX',
     },
     {
@@ -68,7 +68,7 @@ export const ListJob: ListJobProps[] = [
         description: 'Đặt lịch khám bác sĩ cho kiểm tra sức khỏe',
         workplace: 'Nhà riêng',
         type: 'Việc cá nhân',
-        priority: 'highest',
+        priority: 'Normal',
         groupname: '',
     },
     {
@@ -84,7 +84,7 @@ export const ListJob: ListJobProps[] = [
         description: 'Đặt vé xem phim cuối tuần với bạn bè',
         workplace: 'Nhà riêng',
         type: 'Việc cá nhân',
-        priority: 'normal',
+        priority: 'Normal',
         groupname: '',
     },
     {
@@ -100,7 +100,7 @@ export const ListJob: ListJobProps[] = [
         description: 'Hoàn thiện bài tập lớn môn học',
         workplace: 'Nhà riêng',
         type: 'Việc cá nhân',
-        priority: 'highest',
+        priority: 'High',
         groupname: '',
     },
     {
@@ -116,7 +116,7 @@ export const ListJob: ListJobProps[] = [
         description: 'Họp nhóm dự án để trao đổi tiến độ và phân công công việc',
         workplace: 'Công ty ABC',
         type: 'Việc nhóm',
-        priority: 'normal',
+        priority: 'Normal',
         groupname: 'Nhóm Hero',
     },
     {
@@ -131,7 +131,7 @@ export const ListJob: ListJobProps[] = [
         description: 'Cần mua một chiếc ví mới để thay thế ví cũ',
         workplace: 'Nhà riêng',
         type: 'Việc cá nhân',
-        priority: 'highest',
+        priority: 'High',
         groupname: '',
     },
     {
@@ -146,7 +146,7 @@ export const ListJob: ListJobProps[] = [
         description: 'Luyện tập thể dục hàng ngày để duy trì sức khỏe',
         workplace: 'Nhà riêng',
         type: 'Việc cá nhân',
-        priority: 'highest',
+        priority: 'High',
         groupname: '',
     },
     {
@@ -161,7 +161,7 @@ export const ListJob: ListJobProps[] = [
         description: 'Dành thời gian xem phim mới để giải trí',
         workplace: 'Nhà riêng',
         type: 'Việc cá nhân',
-        priority: 'normal',
+        priority: 'Normal',
         groupname: '',
     },
     {
@@ -177,7 +177,7 @@ export const ListJob: ListJobProps[] = [
         description: 'Hoàn thành báo cáo tháng cho công việc',
         workplace: 'Bách khoa',
         type: 'Việc nhóm',
-        priority: 'highest',
+        priority: 'Medium',
         groupname: 'Nhóm UI_UX',
     },
     {
@@ -192,7 +192,7 @@ export const ListJob: ListJobProps[] = [
         description: 'Đặt lịch hẹn với khách hàng để thảo luận về dự án',
         workplace: 'Công ty ABC',
         type: 'Việc cá nhân',
-        priority: 'normal',
+        priority: 'Normal',
         groupname: '',
     },
     {
@@ -207,7 +207,7 @@ export const ListJob: ListJobProps[] = [
         description: 'Dọn dẹp nhà cửa để có không gian sạch sẽ và gọn gàng',
         workplace: 'Nhà riêng',
         type: 'Việc cá nhân',
-        priority: 'medium',
+        priority: 'Medium',
         groupname: '',
     },
     {
@@ -222,7 +222,7 @@ export const ListJob: ListJobProps[] = [
         description: 'Tham gia khóa học online để nâng cao kiến thức',
         workplace: 'Nhà riêng',
         type: 'Việc cá nhân',
-        priority: 'highest',
+        priority: 'Medium',
         groupname: '',
     },
     {
@@ -237,7 +237,7 @@ export const ListJob: ListJobProps[] = [
         description: 'Lập kế hoạch cho chuyến du lịch sắp tới',
         workplace: 'Công ty ABC',
         type: 'Việc cá nhân',
-        priority: 'medium',
+        priority: 'Medium',
         groupname: '',
     },
     {
@@ -252,7 +252,7 @@ export const ListJob: ListJobProps[] = [
         description: 'Chuẩn bị quà sinh nhật cho người thân',
         workplace: 'Nhà riêng',
         type: 'Việc cá nhân',
-        priority: 'highest',
+        priority: 'Medium',
         groupname: '',
     },
     {
@@ -267,7 +267,7 @@ export const ListJob: ListJobProps[] = [
         description: 'Họp dự án để trình bày tiến độ và thảo luận về các vấn đề',
         workplace: 'Bách khoa',
         type: 'Việc nhóm',
-        priority: 'medium',
+        priority: 'Medium',
         groupname: 'Nhóm ITSS',
     },
     {
@@ -282,7 +282,7 @@ export const ListJob: ListJobProps[] = [
         description: 'Thiết kế giao diện cho website mới',
         workplace: 'Công ty ABC',
         type: 'Việc cá nhân',
-        priority: 'highest',
+        priority: 'Medium',
         groupname: '',
     },
     {
@@ -297,7 +297,7 @@ export const ListJob: ListJobProps[] = [
         description: 'Luyện tập yoga hàng ngày để thư giãn và tăng cường sức khỏe',
         workplace: 'Nhà riêng',
         type: 'Việc cá nhân',
-        priority: 'medium',
+        priority: 'Medium',
         groupname: '',
     },
     {
@@ -312,7 +312,7 @@ export const ListJob: ListJobProps[] = [
         description: 'Thử nghiệm phần mềm mới trước khi triển khai',
         workplace: 'Bách khoa',
         type: 'Việc cá nhân',
-        priority: 'high',
+        priority: 'Medium',
         groupname: '',
     },
     {
@@ -327,7 +327,7 @@ export const ListJob: ListJobProps[] = [
         description: 'Làm việc với khách hàng để đáp ứng nhu cầu và giải quyết vấn đề',
         workplace: 'Công ty ABC',
         type: 'Việc cá nhân',
-        priority: 'normal',
+        priority: 'Normal',
         groupname: '',
     },
     {
@@ -342,7 +342,7 @@ export const ListJob: ListJobProps[] = [
         description: 'Viết báo cáo tổng kết về dự án XYZ',
         workplace: 'Bách khoa',
         type: 'Việc nhóm',
-        priority: 'high',
+        priority: 'High',
         groupname: 'Nhóm ITSS',
     },
     {
@@ -357,7 +357,7 @@ export const ListJob: ListJobProps[] = [
         description: 'Tổ chức buổi team building để tăng cường tinh thần đồng đội',
         workplace: 'Bách khoa',
         type: 'Việc nhóm',
-        priority: 'low',
+        priority: 'Low',
         groupname: 'Nhóm Hero',
     },
     {
@@ -372,7 +372,7 @@ export const ListJob: ListJobProps[] = [
         description: 'Học khóa học trực tuyến để nâng cao kiến thức và kỹ năng',
         workplace: 'Nhà riêng',
         type: 'Việc cá nhân',
-        priority: 'high',
+        priority: 'High',
         groupname: '',
     },
     {
@@ -387,7 +387,7 @@ export const ListJob: ListJobProps[] = [
         description: 'Thiết kế giao diện cho website mới',
         workplace: 'Bách khoa',
         type: 'Việc nhóm',
-        priority: 'low',
+        priority: 'Low',
         groupname: 'Nhóm Hero',
     },
     {
@@ -402,7 +402,7 @@ export const ListJob: ListJobProps[] = [
         description: 'Tạo kế hoạch marketing để quảng bá sản phẩm mới',
         workplace: 'Công ty ABC',
         type: 'Việc cá nhân',
-        priority: 'high',
+        priority: 'High',
         groupname: '',
     },
     {
@@ -417,7 +417,7 @@ export const ListJob: ListJobProps[] = [
         description: 'Triển khai hệ thống CRM để quản lý khách hàng hiệu quả',
         workplace: 'Công ty ABC',
         type: 'Việc nhóm',
-        priority: 'low',
+        priority: 'Low',
         groupname: 'Nhóm ITSS',
     },
     {
@@ -432,7 +432,7 @@ export const ListJob: ListJobProps[] = [
         description: 'Phân tích dữ liệu thống kê để đưa ra các thông tin quan trọng',
         workplace: 'Công ty ABC',
         type: 'Việc nhóm',
-        priority: 'high',
+        priority: 'High',
         groupname: 'Nhóm Hero',
     },
     {
@@ -447,7 +447,7 @@ export const ListJob: ListJobProps[] = [
         description: 'Xây dựng ứng dụng di động cho hệ điều hành iOS và Android',
         workplace: 'Bách khoa',
         type: 'Việc nhóm',
-        priority: 'low',
+        priority: 'Low',
         groupname: 'Nhóm ITSS',
     },
     {
@@ -462,7 +462,7 @@ export const ListJob: ListJobProps[] = [
         description: 'Lập kế hoạch đào tạo nhân viên để nâng cao năng lực làm việc',
         workplace: 'Công ty ABC',
         type: 'Việc cá nhân',
-        priority: 'high',
+        priority: 'High',
         groupname: '',
     },
     {
@@ -477,7 +477,7 @@ export const ListJob: ListJobProps[] = [
         description: 'Thiết kế logo mới cho công ty',
         workplace: 'Nhà riêng',
         type: 'Việc cá nhân',
-        priority: 'low',
+        priority: 'Low',
         groupname: '',
     },
     {
@@ -491,7 +491,7 @@ export const ListJob: ListJobProps[] = [
             { stt: 'Todo', name: 'Thiết kế và đề xuất logo' },
         ],
         description: 'Thiết kế logo cho công ty',
-        priority: 'high',
+        priority: 'High',
         workplace: 'Công ty ABC',
         type: 'Việc nhóm',
         groupname: 'Nhóm UI_UX',
@@ -507,7 +507,7 @@ export const ListJob: ListJobProps[] = [
             { stt: 'Todo', name: 'Lập báo cáo và đề xuất chiến lược' },
         ],
         description: 'Phân tích thị trường để đề xuất chiến lược kinh doanh',
-        priority: 'high',
+        priority: 'High',
         workplace: 'Nhà riêng',
         type: 'Việc nhóm',
         groupname: 'Nhóm ITSS',
@@ -523,7 +523,7 @@ export const ListJob: ListJobProps[] = [
             { stt: 'Done', name: 'Kiểm tra và điều chỉnh' },
         ],
         description: 'Triển khai hệ thống mới cho công ty',
-        priority: 'low',
+        priority: 'Low',
         workplace: 'Nhà riêng',
         type: 'Việc nhóm',
         groupname: 'Nhóm Hero',
@@ -539,7 +539,7 @@ export const ListJob: ListJobProps[] = [
             { stt: 'Todo', name: 'Phát triển giao diện người dùng' },
         ],
         description: 'Tạo giao diện người dùng cho ứng dụng di động',
-        priority: 'high',
+        priority: 'High',
         workplace: 'Công ty ABC',
         type: 'Việc nhóm',
         groupname: 'Nhóm UI_UX',
@@ -556,7 +556,7 @@ export const ListJob: ListJobProps[] = [
             { stt: 'Todo', name: 'Triển khai quy trình mới' },
         ],
         description: 'Phân tích và cải tiến quy trình sản xuất của công ty',
-        priority: 'low',
+        priority: 'Low',
         workplace: 'Bách khoa',
         type: 'Việc nhóm',
         groupname: 'Nhóm ITSS',
@@ -572,7 +572,7 @@ export const ListJob: ListJobProps[] = [
             { stt: 'Done', name: 'Triển khai và quảng bá' },
         ],
         description: 'Triển khai chiến dịch marketing cho sản phẩm mới',
-        priority: 'high',
+        priority: 'High',
         workplace: 'Công ty ABC',
         type: 'Việc nhóm',
         groupname: 'Nhóm Hero',
@@ -582,7 +582,7 @@ export const ListJob: ListJobProps[] = [
         task: 'Đào tạo nhân viên mới',
         status: 'Todo',
         deadline: '2023-07-10',
-        priority: 'high',
+        priority: 'High',
         steps: [
             { stt: 'Todo', name: 'Xác định nhu cầu đào tạo' },
             { stt: 'Todo', name: 'Lập kế hoạch đào tạo' },
@@ -599,7 +599,7 @@ export const ListJob: ListJobProps[] = [
         task: 'Xây dựng giao diện người dùng',
         status: 'Processing',
         deadline: '2023-08-20',
-        priority: 'low',
+        priority: 'Low',
         steps: [
             { stt: 'Done', name: 'Thiết kế giao diện' },
             { stt: 'Done', name: 'Lập trình và phát triển' },
@@ -616,7 +616,7 @@ export const ListJob: ListJobProps[] = [
         task: 'Kiểm tra và nâng cấp hệ thống',
         status: 'Processing',
         deadline: '2023-07-31',
-        priority: 'high',
+        priority: 'High',
         steps: [
             { stt: 'Todo', name: 'Kiểm tra hiệu năng hệ thống' },
             { stt: 'Processing', name: 'Phát hiện và khắc phục lỗi' },
@@ -632,7 +632,7 @@ export const ListJob: ListJobProps[] = [
         task: 'Tổ chức sự kiện công ty',
         status: 'Done',
         deadline: '2023-08-10',
-        priority: 'low',
+        priority: 'Low',
         steps: [
             { stt: 'Done', name: 'Lập kế hoạch sự kiện' },
             { stt: 'Done', name: 'Đặt địa điểm và thiết kế trang trí' },
@@ -650,7 +650,7 @@ export const ListJob: ListJobProps[] = [
         task: 'Phân tích dữ liệu',
         status: 'Processing',
         deadline: '2023-06-25 14:30',
-        priority: 'high',
+        priority: 'High',
         steps: [
             { stt: 'Done', name: 'Thu thập dữ liệu thống kê' },
             { stt: 'Processing', name: 'Phân loại và xử lý dữ liệu' },
@@ -667,7 +667,7 @@ export const ListJob: ListJobProps[] = [
         task: 'Phỏng vấn ứng viên',
         status: 'Todo',
         deadline: '2023-08-20 09:30',
-        priority: 'medium',
+        priority: 'Medium',
         steps: [
             { stt: 'Todo', name: 'Xem CV và đánh giá' },
             { stt: 'Todo', name: 'Liên hệ ứng viên để lịch phỏng vấn' },
@@ -684,7 +684,7 @@ export const ListJob: ListJobProps[] = [
         task: 'Chuẩn bị tài liệu hội thảo',
         status: 'Todo',
         deadline: '2023-06-30 14:00',
-        priority: 'low',
+        priority: 'Low',
         steps: [
             { stt: 'Todo', name: 'Thu thập thông tin liên quan' },
             { stt: 'Todo', name: 'Soạn tài liệu hội thảo' },
@@ -701,7 +701,7 @@ export const ListJob: ListJobProps[] = [
         task: 'Kiểm tra và sửa lỗi phần mềm',
         status: 'Processing',
         deadline: '2023-07-15 10:45',
-        priority: 'medium',
+        priority: 'Medium',
         steps: [
             { stt: 'Done', name: 'Phân tích và xác định lỗi' },
             { stt: 'Done', name: 'Tiến hành kiểm tra và ghi lại lỗi' },
@@ -718,7 +718,7 @@ export const ListJob: ListJobProps[] = [
         task: 'Triển khai chiến dịch quảng cáo',
         status: 'Todo',
         deadline: '2023-06-25 13:30',
-        priority: 'low',
+        priority: 'Low',
         steps: [
             { stt: 'Todo', name: 'Lập kế hoạch quảng cáo' },
             { stt: 'Todo', name: 'Tạo nội dung và thiết kế quảng cáo' },
@@ -735,7 +735,7 @@ export const ListJob: ListJobProps[] = [
         task: 'Lắp đặt và cấu hình mạng',
         status: 'Done',
         deadline: '2023-07-12 15:30',
-        priority: 'low',
+        priority: 'Low',
         steps: [
             { stt: 'Done', name: 'Lập kế hoạch lắp đặt mạng' },
             { stt: 'Done', name: 'Lắp đặt thiết bị mạng' },
@@ -752,7 +752,7 @@ export const ListJob: ListJobProps[] = [
         task: 'Thực hiện buổi workshop',
         status: 'Processing',
         deadline: '2023-07-05 16:30',
-        priority: 'low',
+        priority: 'Low',
         steps: [
             { stt: 'Processing', name: 'Chuẩn bị nội dung và tài liệu' },
             { stt: 'Processing', name: 'Thiết lập không gian và trang thiết bị' },
@@ -769,7 +769,7 @@ export const ListJob: ListJobProps[] = [
         task: 'Tạo nội dung cho blog',
         status: 'Done',
         deadline: '2023-08-10 11:15',
-        priority: 'medium',
+        priority: 'Medium',
         steps: [
             { stt: 'Done', name: 'Nghiên cứu và lựa chọn chủ đề' },
             { stt: 'Done', name: 'Viết bài và chỉnh sửa' },
@@ -786,7 +786,7 @@ export const ListJob: ListJobProps[] = [
         task: 'Phân tích thị trường',
         status: 'Todo',
         deadline: '2023-07-01 14:45',
-        priority: 'low',
+        priority: 'Low',
         steps: [
             { stt: 'Todo', name: 'Thu thập dữ liệu thị trường' },
             { stt: 'Todo', name: 'Phân tích và đánh giá dữ liệu' },
@@ -803,7 +803,7 @@ export const ListJob: ListJobProps[] = [
         task: 'Kiểm tra hệ thống bảo mật',
         status: 'Todo',
         deadline: '2023-06-28 10:00',
-        priority: 'medium',
+        priority: 'Medium',
         steps: [
             { stt: 'Todo', name: 'Phân tích và đánh giá hệ thống' },
             { stt: 'Todo', name: 'Kiểm tra lỗ hổng bảo mật' },
