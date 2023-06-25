@@ -5,21 +5,28 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faXmark } from '@fortawesome/free-solid-svg-icons';
 
 import './cardgroup.scss';
+import { ListJob } from '../../Model/ListJob';
+import moment from 'moment';
 
 interface CardGroupProps {
     group: listGroupProps;
 }
 
 function CardGroup({ group }: CardGroupProps) {
-    const [show, setShow] = useState(false);
+    const [showModal, setShowModal] = useState(false);
     const owner = group.members.find((mem) => mem.role === 'Owner')?.name;
+    const listJobsOfGrounp = ListJob.filter((job) => job.groupname === group.name);
+    listJobsOfGrounp.sort((a, b) => {
+        const order = ['Todo', 'Processing', 'Done'];
+        return order.indexOf(a.status) - order.indexOf(b.status);
+    });
 
     return (
         <div>
             <div
                 className="ms-3 me-4 mb-5 border border-black shadow-sm center flex-column"
                 style={{ width: 300, height: 300, background: 'var(--background-color)' }}
-                onClick={() => setShow(true)}
+                onClick={() => setShowModal(true)}
             >
                 <Figure className="mb-4">
                     <Figure.Image
@@ -34,16 +41,16 @@ function CardGroup({ group }: CardGroupProps) {
             </div>
 
             <Modal
-                show={show}
+                show={showModal}
                 dialogClassName="modal-90w"
-                onHide={() => setShow(false)}
+                onHide={() => setShowModal(false)}
                 centered
                 size="xl"
                 backdrop="static"
             >
                 <div className="">
                     <Modal.Header closeButton>
-                        <Modal.Title>{group.name}</Modal.Title>
+                        <Modal.Title className="fs-2">{group.name}</Modal.Title>
                     </Modal.Header>
                     <Modal.Body style={{ minHeight: '40rem' }}>
                         <Tabs
@@ -104,7 +111,32 @@ function CardGroup({ group }: CardGroupProps) {
 
                             {/* Trang công việc */}
                             <Tab eventKey="task" title="Công việc">
-                                Tab content for Profile
+                                <Table bordered hover size="">
+                                    <thead>
+                                        <tr>
+                                            <th>#</th>
+                                            <th>Tên công việc</th>
+                                            <th>Trạng thái</th>
+                                            <th>Mức độ ưu tiên</th>
+                                            <th>Deadline</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {listJobsOfGrounp.map((job, index) => (
+                                            <tr key={index}>
+                                                <td>{index + 1}</td>
+                                                <td>{job.task}</td>
+                                                <td>{job.status}</td>
+                                                <td>{job.priority}</td>
+                                                <td>
+                                                    {moment(job.deadline).format(
+                                                        'HH:mm DD-MM-YYYY',
+                                                    )}
+                                                </td>
+                                            </tr>
+                                        ))}
+                                    </tbody>
+                                </Table>
                             </Tab>
                             <Tab eventKey="task-share" title="Công việc được chia sẻ">
                                 Tab content for Profile

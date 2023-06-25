@@ -232,7 +232,7 @@ function Filter() {
                                     <div className="ms-3">
                                         <Form.Select
                                             defaultValue={priority}
-                                            aria-label="Default select example"
+                                            aria-label="priority"
                                             onChange={(e) => {
                                                 setPriority(e.target.value);
                                                 dispatch(priorityFilterChange(e.target.value));

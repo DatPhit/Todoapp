@@ -8,7 +8,7 @@ export type groupsProps =
     | 'Nhóm Hero'
     | 'Nhóm ITSS'
     | 'Nhóm Nhật ngành'
-    | 'Nhóm thực tập';
+    | 'Nhóm Thực tập';
 
 type statusValue = 'Todo' | 'Processing' | 'Done';
 export interface ListJobProps {
@@ -168,7 +168,7 @@ export const ListJob: ListJobProps[] = [
         id: 10,
         task: 'Hoàn thành báo cáo',
         status: 'Todo',
-        deadline: '2023-06-28',
+        deadline: '2023-06-28 12:05',
         steps: [
             { stt: 'Todo', name: 'Thu thập dữ liệu' },
             { stt: 'Todo', name: 'Phân tích và xử lý dữ liệu' },
@@ -598,7 +598,7 @@ export const ListJob: ListJobProps[] = [
         id: 38,
         task: 'Xây dựng giao diện người dùng',
         status: 'Processing',
-        deadline: '2023-08-20',
+        deadline: '2023-08-20 15:30',
         priority: 'Low',
         steps: [
             { stt: 'Done', name: 'Thiết kế giao diện' },
@@ -694,7 +694,7 @@ export const ListJob: ListJobProps[] = [
         description: 'Chuẩn bị tài liệu cho buổi hội thảo về tiếp thị kỹ thuật số',
         workplace: 'Nhà riêng',
         type: 'Việc nhóm',
-        groupname: 'Nhóm thực tập',
+        groupname: 'Nhóm Thực tập',
     },
     {
         id: 44,
@@ -728,7 +728,7 @@ export const ListJob: ListJobProps[] = [
         description: 'Triển khai chiến dịch quảng cáo trực tuyến cho sản phẩm mới',
         workplace: 'Công ty ABC',
         type: 'Việc nhóm',
-        groupname: 'Nhóm thực tập',
+        groupname: 'Nhóm Thực tập',
     },
     {
         id: 46,
@@ -762,7 +762,7 @@ export const ListJob: ListJobProps[] = [
         description: 'Thực hiện buổi workshop về quản lý thời gian và hiệu suất làm việc',
         workplace: 'Công ty ABC',
         type: 'Việc nhóm',
-        groupname: 'Nhóm thực tập',
+        groupname: 'Nhóm Thực tập',
     },
     {
         id: 48,
@@ -796,7 +796,7 @@ export const ListJob: ListJobProps[] = [
         description: 'Phân tích thị trường và đề xuất chiến lược phát triển sản phẩm',
         workplace: 'Nhà riêng',
         type: 'Việc nhóm',
-        groupname: 'Nhóm thực tập',
+        groupname: 'Nhóm Thực tập',
     },
     {
         id: 50,

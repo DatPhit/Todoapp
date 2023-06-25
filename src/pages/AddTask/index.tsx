@@ -16,7 +16,7 @@ function AddTask() {
     const [description, setDescription] = useState('');
     const [workplace, setWorkplace] = useState('');
     const [type, setType] = useState('Việc cá nhân');
-    const [priority, setPriority] = useState<boolean>(false);
+    const [priority, setPriority] = useState('');
     const [stepValues, setStepValues] = useState(['', '']);
     const [groupname, setGroupname] = useState('');
 
@@ -165,12 +165,17 @@ function AddTask() {
                         {/* Priority */}
                         <div className="mb-3 d-flex">
                             <div className="w-25">Priority</div>
-                            <Form.Check
-                                className="w-100 fs-5"
-                                aria-label="Priority"
-                                checked={priority}
-                                onChange={(e) => setPriority(e.target.checked)}
-                            />
+                            <Form.Select
+                                aria-label="priority"
+                                onChange={(e) => {
+                                    setPriority(e.target.value);
+                                }}
+                            >
+                                <option value="Low">Low</option>
+                                <option value="Normal">Normal</option>
+                                <option value="Medium">Medium</option>
+                                <option value="High">High</option>
+                            </Form.Select>
                         </div>
 
                         {/* Dealine */}
