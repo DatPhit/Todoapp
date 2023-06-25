@@ -1,5 +1,14 @@
+import CardGroup from '../../components/card-group/CardGroup';
+import { listGroup } from '../../Model/listGroup';
+
 function Group() {
-    return <h1>Group page</h1>;
+    return (
+        <div className="d-flex flex-wrap">
+            {listGroup.map((group, index) => (
+                <CardGroup key={index} group={group} />
+            ))}
+        </div>
+    );
 }
 
 export default Group;

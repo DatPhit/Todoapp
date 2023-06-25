@@ -41,5 +41,12 @@ $progress-bar-transition: none;
 
 $input-border-color: #ae9e9e;
 $form-check-input-border: 1px solid #ae9e9e;
+
+$nav-link-font-size: 1.2rem;
+$nav-link-color: #8b008b;
+$nav-link-hover-color: #ba55d3;
+$nav-underline-link-active-color: #c71585;
+
+$table-hover-bg: #e6e6fa;
 // Import Bootstrap and its default variables
 @import '../node_modules/bootstrap/scss/bootstrap';
