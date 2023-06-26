@@ -20,7 +20,7 @@ function Filter() {
 
     const [searchValue, setSearchValue] = useState('');
     const [type, setType] = useState('ALL');
-    const [deadlineDate, setDeadlineDate] = useState('2030-06-15 00:00:00');
+    const [deadlineDate, setDeadlineDate] = useState('2030-06-15');
     const [deadlineAsDe, setDeadlineAsDe] = useState('');
     const [workplace, setWorkplace] = useState('');
     const [priority, setPriority] = useState('not');
