@@ -10,32 +10,32 @@ function SignUp() {
                 <div className="mt-5 center">
                     <img src={img} alt="logo" className="w-100" />
                 </div>
-                <Form className="" style={{ width: '25%', marginTop: '9vh' }}>
+                <Form className="" style={{ width: '30%', marginTop: '9vh' }}>
                     <h2 className="text-center mb-3">Đăng ký tài khoản</h2>
-                    <Form.Group className="mb-3" controlId="ControlInput1">
+                    <Form.Group className="fs-5 mb-3" controlId="ControlInput1">
                         <Form.Label>Họ và Tên</Form.Label>
-                        <Form.Control type="text" placeholder="Enter name" />
+                        <Form.Control type="text" placeholder="Enter name" size="lg" />
                     </Form.Group>
-                    <Form.Group className="mb-3" controlId="ControlInput2">
+                    <Form.Group className="fs-5 mb-3" controlId="ControlInput2">
                         <Form.Label>Nhập địa chỉ email</Form.Label>
-                        <Form.Control type="text" placeholder="Enter email" />
+                        <Form.Control type="text" placeholder="Enter email" size="lg" />
                     </Form.Group>
-                    <Form.Group className="mb-3" controlId="ControlInput3">
+                    <Form.Group className="fs-5 mb-3" controlId="ControlInput3">
                         <Form.Label>Nhập mật khẩu</Form.Label>
-                        <Form.Control type="password" placeholder="Enter password" />
+                        <Form.Control type="password" placeholder="Enter password" size="lg" />
                     </Form.Group>
-                    <Form.Group className="mb-4" controlId="ControlInput4">
+                    <Form.Group className="fs-5 mb-4" controlId="ControlInput4">
                         <Form.Label>Nhập lại mật khẩu</Form.Label>
-                        <Form.Control type="password" placeholder="Enter password" />
+                        <Form.Control type="password" placeholder="Enter password" size="lg" />
                     </Form.Group>
                     <div className="mt-4 text-center w-100">
-                        <Button type="submit" className="fs-5 signup_button">
+                        <Button type="submit" className="fs-4 signup_button">
                             Đăng ký
                         </Button>
                     </div>
                     <div
                         className="mt-3 d-flex justify-content-center"
-                        style={{ fontSize: '0.9rem' }}
+                        style={{ fontSize: '1.2rem' }}
                     >
                         <div>
                             <span>Bạn đã có tài khoản?</span>

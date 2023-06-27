@@ -1,7 +1,6 @@
-import { Button, Form } from 'react-bootstrap';
-import { useDispatch, useSelector } from 'react-redux';
+import { Form } from 'react-bootstrap';
+import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { authenSelector } from '../../redux/selectors';
 import { login } from '../../components/Layout/DefaultLayout/Taskbar/authenSlice';
 import img from '../../images/logo.png';
 import './signin.scss';
@@ -17,25 +16,25 @@ function SignIn() {
                 <div className="mt-5 center">
                     <img src={img} alt="logo" className="w-100" />
                 </div>
-                <Form className="" style={{ width: '25%', marginTop: '10vh' }}>
-                    <h2 className="text-center mb-3">Đăng nhập</h2>
-                    <Form.Group className="mb-3" controlId="ControlInput2">
+                <Form className="" style={{ width: '30%', marginTop: '10vh' }}>
+                    <h1 className="text-center mb-3">Đăng nhập</h1>
+                    <Form.Group className="fs-5 mb-3" controlId="ControlInput2">
                         <Form.Label>Nhập địa chỉ email</Form.Label>
-                        <Form.Control type="email" placeholder="Enter email" />
+                        <Form.Control type="email" placeholder="Enter email" size="lg" />
                     </Form.Group>
-                    <Form.Group className="mb-3" controlId="ControlInput3">
+                    <Form.Group className="fs-5 mb-3" controlId="ControlInput3">
                         <Form.Label>Nhập mật khẩu</Form.Label>
-                        <Form.Control type="password" placeholder="Enter password" />
+                        <Form.Control type="password" placeholder="Enter password" size="lg" />
                     </Form.Group>
 
                     <div className="mt-5 text-center w-100" onClick={handleSignIn}>
-                        <Link to="/" className=" py-3 fs-5 signin_button">
+                        <Link to="/" className=" py-3 fs-4 signin_button">
                             Đăng nhập
                         </Link>
                     </div>
                     <div
                         className="mt-4 d-flex justify-content-center"
-                        style={{ fontSize: '0.9rem' }}
+                        style={{ fontSize: '1.2rem' }}
                     >
                         <div>
                             <span>Bạn chưa có tài khoản?</span>

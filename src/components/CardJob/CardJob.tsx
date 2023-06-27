@@ -115,6 +115,7 @@ const CardJob: React.FC<CardJobProps> = ({ Job }) => {
             dispatch(deleteProcess(id));
             dispatch(changeStatusToDone(0));
         }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [steps]);
 
     return (
