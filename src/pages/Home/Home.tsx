@@ -29,7 +29,15 @@ function Home() {
     const processListFilter: ListJobProps[] = [];
     const doneListFilter: ListJobProps[] = [];
 
-    list.map((job) => {
+    // Lọc ra những job là việc chia sẻ nhưng không liên quan đến user
+    const newlist = list.filter((job) => {
+        if (job.type === 'Việc được chia sẻ') {
+            return job.owner === 'Quang Đạt' || job.helpers?.includes('Quang Đạt');
+        } else return job;
+    });
+
+    // Phân chia job vào các cột
+    newlist.map((job) => {
         if (job.status === 'Todo') todoListFilter.push(job);
         if (job.status === 'Processing') processListFilter.push(job);
         if (job.status === 'Done') doneListFilter.push(job);

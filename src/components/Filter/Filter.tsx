@@ -14,6 +14,7 @@ import {
 import './Filter.scss';
 import { Button, Col, Form, Row } from 'react-bootstrap';
 import { listGroupNameJobs, listWorkplaceJobs } from '../../Services/ProjectsService';
+import QuickFilter from './QuickFilter';
 
 function Filter() {
     const [showFilter, setShowFilter] = useState(false);
@@ -27,14 +28,6 @@ function Filter() {
     const [groupname, setGroupname] = useState('');
 
     const dispatch = useDispatch();
-    const handleClickButton = (e: React.MouseEvent<HTMLButtonElement>) => {
-        const buttons = document.querySelectorAll('.filter_type');
-        buttons.forEach((button) => {
-            button.classList.remove('type_active');
-        });
-        e.currentTarget.classList.add('type_active');
-        dispatch(typeFilterChange(e.currentTarget.value));
-    };
 
     const handleCancelFilter = () => {
         setSearchValue('');
@@ -223,6 +216,22 @@ function Filter() {
                                                 }}
                                             />
                                         </div>
+                                        <div className="d-flex flex-row-reverse justify-content-end align-items-center">
+                                            <label htmlFor="typeShare" className="ms-1 p-1">
+                                                Chia sẻ
+                                            </label>
+                                            <Form.Check
+                                                checked={type === 'Việc được chia sẻ'}
+                                                id="typeShare"
+                                                name="type"
+                                                type="radio"
+                                                value="Việc được chia sẻ"
+                                                onChange={(e) => {
+                                                    setType(e.target.value);
+                                                    dispatch(typeFilterChange(e.target.value));
+                                                }}
+                                            />
+                                        </div>
                                     </div>
                                 </Col>
 
@@ -357,30 +366,15 @@ function Filter() {
                 )}
             </div>
 
-            {/* Nav lọc công việc theo type */}
-            <div
-                className="mt-3 flex-grow-1 d-flex flex-column align-items-center border border-dark-subtle rounded-3"
-                style={{ backgroundColor: 'var(--background-status-bar)' }}
-            >
-                <div className="mt-2 mb-3 fw-medium ">Type</div>
-                <button
-                    className="filter_type type_active mb-4"
-                    value="ALL"
-                    onClick={handleClickButton}
-                >
-                    ALL
-                </button>
-                <button className="filter_type mb-4" value="Việc nhóm" onClick={handleClickButton}>
-                    Group
-                </button>
-                <button
-                    className="filter_type mb-4"
-                    value="Việc cá nhân"
-                    onClick={handleClickButton}
-                >
-                    Me
-                </button>
-            </div>
+            {/* Thanh lọc nhanh */}
+            <QuickFilter
+                type={type}
+                setType={setType}
+                deadlineAsDe={deadlineAsDe}
+                setDeadlineAsDe={setDeadlineAsDe}
+                priority={priority}
+                setPriority={setPriority}
+            />
         </>
     );
 }

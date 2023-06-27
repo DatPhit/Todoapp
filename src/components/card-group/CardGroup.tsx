@@ -7,14 +7,16 @@ import { faXmark } from '@fortawesome/free-solid-svg-icons';
 import './cardgroup.scss';
 import { ListJob } from '../../Model/ListJob';
 import moment from 'moment';
+import JobSharePage from './JobSharePage';
 
 interface CardGroupProps {
     group: listGroupProps;
 }
 
 function CardGroup({ group }: CardGroupProps) {
+    const adminName = 'Quang Đạt';
     const [showModal, setShowModal] = useState(false);
-    const owner = group.members.find((mem) => mem.role === 'Owner')?.name;
+    const ownerOfGroup = group.members.find((mem) => mem.role === 'Owner')?.name;
     const listJobsOfGrounp = ListJob.filter((job) => job.groupname === group.name);
     listJobsOfGrounp.sort((a, b) => {
         const order = ['Todo', 'Processing', 'Done'];
@@ -91,14 +93,14 @@ function CardGroup({ group }: CardGroupProps) {
                                                     {member.role}
                                                 </div>
                                                 <div className="position-absolute end-2">
-                                                    {owner === 'Quang Đạt' &&
-                                                        member.name !== 'Quang Đạt' && (
+                                                    {ownerOfGroup === adminName &&
+                                                        member.name !== adminName && (
                                                             <FontAwesomeIcon
                                                                 icon={faXmark}
                                                                 size="xl"
                                                             />
                                                         )}
-                                                    {member.name === 'Quang Đạt' && (
+                                                    {member.name === adminName && (
                                                         <div className="fw-light fs-5">Bạn</div>
                                                     )}
                                                 </div>
@@ -111,7 +113,7 @@ function CardGroup({ group }: CardGroupProps) {
 
                             {/* Trang công việc */}
                             <Tab eventKey="task" title="Công việc">
-                                <Table bordered hover size="">
+                                <Table bordered hover className="fs-5">
                                     <thead>
                                         <tr>
                                             <th>#</th>
@@ -139,7 +141,7 @@ function CardGroup({ group }: CardGroupProps) {
                                 </Table>
                             </Tab>
                             <Tab eventKey="task-share" title="Công việc được chia sẻ">
-                                Tab content for Profile
+                                <JobSharePage group={group} />
                             </Tab>
                             <Tab eventKey="rate" title="Đánh giá">
                                 Tab content for Contact

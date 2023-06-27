@@ -18,10 +18,13 @@ export interface ListJobProps {
     deadline: Date | string;
     steps: stepsProps[];
     description: string;
-    workplace: 'Bách khoa' | 'Nhà riêng' | 'Công ty ABC' | string;
-    type: 'Việc cá nhân' | 'Việc nhóm';
+    workplace: 'Bách khoa' | 'Nhà riêng' | 'Công ty ABC' | string | '';
+    type: 'Việc cá nhân' | 'Việc nhóm' | 'Việc được chia sẻ';
     priority: 'High' | 'Medium' | 'Normal' | 'Low' | string;
     groupname: groupsProps | '' | string;
+    group_shared?: groupsProps[] | string[];
+    owner?: string;
+    helpers?: string[];
 }
 
 export const ListJob: ListJobProps[] = [
@@ -798,21 +801,66 @@ export const ListJob: ListJobProps[] = [
         type: 'Việc nhóm',
         groupname: 'Nhóm Thực tập',
     },
+    //    Việc được chia sẻ
     {
         id: 50,
         task: 'Kiểm tra hệ thống bảo mật',
-        status: 'Todo',
+        status: 'Processing',
         deadline: '2023-06-28 10:00',
         priority: 'Medium',
         steps: [
-            { stt: 'Todo', name: 'Phân tích và đánh giá hệ thống' },
-            { stt: 'Todo', name: 'Kiểm tra lỗ hổng bảo mật' },
-            { stt: 'Todo', name: 'Áp dụng biện pháp bảo mật' },
-            { stt: 'Todo', name: 'Kiểm tra lại hiệu quả' },
+            { stt: 'Done', name: 'Phân tích và đánh giá hệ thống' },
+            { stt: 'Processing', name: 'Kiểm tra lỗ hổng bảo mật' },
+            { stt: 'Processing', name: 'Áp dụng biện pháp bảo mật' },
+            { stt: 'Processing', name: 'Kiểm tra lại hiệu quả' },
         ],
         description: 'Kiểm tra và nâng cấp hệ thống bảo mật của công ty',
-        workplace: 'Bách khoa',
-        type: 'Việc nhóm',
-        groupname: 'Nhóm Nhật ngành',
+        workplace: '',
+        type: 'Việc được chia sẻ',
+        groupname: '',
+        group_shared: ['Nhóm Nhật ngành'],
+        owner: 'Văn Bảo',
+        helpers: ['Quang Đạt'],
+    },
+    {
+        id: 51,
+        task: 'Hoàn thành bài tập lập trình',
+        status: 'Processing',
+        deadline: '2023-07-05T10:00',
+        steps: [
+            { stt: 'Done', name: 'Đọc yêu cầu bài tập' },
+            { stt: 'Done', name: 'Viết mã lập trình' },
+            { stt: 'Processing', name: 'Kiểm tra và sửa lỗi' },
+            { stt: 'Processing', name: 'Nộp bài tập' },
+        ],
+        description: 'Làm bài tập lập trình và nộp đúng thời hạn',
+        workplace: '',
+        type: 'Việc được chia sẻ',
+        priority: 'High',
+        groupname: '',
+        group_shared: ['Nhóm Nhật ngành', 'Nhóm UI_UX'],
+        owner: 'Cao Kỳ',
+        helpers: [],
+    },
+
+    {
+        id: 52,
+        task: 'Thực hiện kiểm thử sản phẩm',
+        status: 'Todo',
+        deadline: '2023-06-30T15:00',
+        steps: [
+            { stt: 'Todo', name: 'Xác định phạm vi kiểm thử' },
+            { stt: 'Todo', name: 'Lập kế hoạch kiểm thử' },
+            { stt: 'Todo', name: 'Thực hiện kiểm thử' },
+            { stt: 'Todo', name: 'Ghi lại và báo cáo kết quả' },
+        ],
+        description: 'Tiến hành kiểm thử sản phẩm trước khi ra mắt',
+        workplace: '',
+        type: 'Việc được chia sẻ',
+        priority: 'Normal',
+        groupname: '',
+        group_shared: ['Nhóm Nhật ngành', 'Nhóm ITSS', 'Nhóm Hero'],
+        owner: 'Quang Đạt',
+        helpers: ['Minh Dũng'],
     },
 ];

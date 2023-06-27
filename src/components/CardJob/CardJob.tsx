@@ -19,14 +19,28 @@ import {
 import { addDone, changeStatusToDone, deleteDone } from '../../pages/Home/doneSlice';
 import ModalEditTask from '../modal/ModalEditTask';
 import ModalDeleteTask from '../modal/ModalDeleteTask';
+import ModalShareTask from '../modal/ModalShareTask';
 
 interface CardJobProps {
     Job: ListJobProps;
 }
 const CardJob: React.FC<CardJobProps> = ({ Job }) => {
     const [showDetails, setShowDetails] = useState(false);
-    const { id, task, status, deadline, steps, description, workplace, type, priority, groupname } =
-        Job;
+    const {
+        id,
+        task,
+        status,
+        deadline,
+        steps,
+        description,
+        workplace,
+        type,
+        priority,
+        groupname,
+        group_shared,
+        owner,
+        helpers,
+    } = Job;
 
     // Redux
     const dispatch = useDispatch();
@@ -57,6 +71,9 @@ const CardJob: React.FC<CardJobProps> = ({ Job }) => {
 
     // handle show modal when click edit job
     const [showModalEditTask, setShowModalEditTask] = useState(false);
+
+    // handle show modal when click share job
+    const [showModalShareTask, setShowModalShareTask] = useState(false);
 
     // Xử lý click badge ở cột Processing
     const handleClickBadge = (index: number) => {
@@ -109,6 +126,7 @@ const CardJob: React.FC<CardJobProps> = ({ Job }) => {
                 >
                     <FontAwesomeIcon icon={faEllipsis} size="xl" />
                 </button>
+                {/*  Button hiển thị các option của card */}
                 {showOptions && (
                     <div
                         className="z-1 border border-1 border-secondary rounded-3 overflow-hidden d-flex flex-column position-absolute top-10 end-100"
@@ -120,6 +138,16 @@ const CardJob: React.FC<CardJobProps> = ({ Job }) => {
                         >
                             Chỉnh sửa
                         </button>
+
+                        {(type === 'Việc cá nhân' ||
+                            (type === 'Việc được chia sẻ' && owner === 'Quang Đạt')) && (
+                            <button
+                                className="cardjob_button_option"
+                                onClick={() => setShowModalShareTask(true)}
+                            >
+                                Chia sẻ
+                            </button>
+                        )}
 
                         <button
                             className="cardjob_button_option "
@@ -145,6 +173,12 @@ const CardJob: React.FC<CardJobProps> = ({ Job }) => {
                 job={Job}
                 show={showModalEditTask}
                 hide={() => setShowModalEditTask(false)}
+            />
+
+            <ModalShareTask
+                job={Job}
+                show={showModalShareTask}
+                hide={() => setShowModalShareTask(false)}
             />
 
             {/* Card head */}
@@ -229,24 +263,72 @@ const CardJob: React.FC<CardJobProps> = ({ Job }) => {
                     ))}
                     <hr />
                     {/* Types, Group name, Workplace */}
-                    <div className="mb-5 d-flex flex-column">
+                    <div className="mb-5">
                         <div className="d-flex justify-content-between">
-                            <div className="d-inline-flex">
-                                <div className="me-1 fw-medium">Nơi làm việc:</div>
-                                {workplace}
+                            <div className="d-flex flex-column">
+                                {workplace && (
+                                    <div className="d-inline-flex">
+                                        <div className="me-1 fw-medium">Nơi làm việc:</div>
+                                        {workplace}
+                                    </div>
+                                )}
+                                <div className="d-inline-flex">
+                                    <div className="me-1 fw-medium">Phân loại:</div>
+                                    {type}
+                                </div>
+                                {type === 'Việc nhóm' && (
+                                    <div className="d-inline-flex">
+                                        <div className="me-1 fw-medium">Tên nhóm:</div>
+                                        {groupname}
+                                    </div>
+                                )}
+                                {type === 'Việc được chia sẻ' && (
+                                    <div className="d-inline-flex">
+                                        <div className="me-1 fw-medium">Người chia sẻ:</div>
+                                        {owner}
+                                    </div>
+                                )}
+                                {type === 'Việc được chia sẻ' && helpers && (
+                                    <div className="d-flex">
+                                        <div className="d-flex flex-wrap">
+                                            <div className="me-1 fw-medium">Người giúp:</div>
+                                            {helpers.map((helper, index) => (
+                                                <div key={index} className="me-1">
+                                                    {helper}
+                                                    {helpers.length > 1
+                                                        ? index !== helpers.length - 1
+                                                            ? ','
+                                                            : '.'
+                                                        : ''}
+                                                </div>
+                                            ))}
+                                        </div>
+                                    </div>
+                                )}
+                                {type === 'Việc được chia sẻ' &&
+                                    group_shared &&
+                                    owner === 'Quang Đạt' && (
+                                        <div className="d-flex">
+                                            <div className="d-flex flex-wrap">
+                                                <div className="me-1 fw-medium">
+                                                    Nhóm đã chia sẻ:
+                                                </div>
+                                                {group_shared.map((helper, index) => (
+                                                    <i key={index} className="me-1">
+                                                        {helper}
+                                                        {group_shared.length > 1
+                                                            ? index !== group_shared.length - 1
+                                                                ? ','
+                                                                : '.'
+                                                            : ''}
+                                                    </i>
+                                                ))}
+                                            </div>
+                                        </div>
+                                    )}
                             </div>
                             <div className="me-1 fw-medium">{priority}</div>
                         </div>
-                        <div className="d-inline-flex">
-                            <div className="me-1 fw-medium">Phân loại:</div>
-                            {type}
-                        </div>
-                        {type === 'Việc nhóm' && (
-                            <div className="d-inline-flex">
-                                <div className="me-1 fw-medium">Tên nhóm:</div>
-                                {groupname}
-                            </div>
-                        )}
                     </div>
                 </div>
             )}

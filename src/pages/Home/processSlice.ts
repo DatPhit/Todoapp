@@ -44,6 +44,19 @@ export const procesSlice = createSlice({
         moveToProcessing: (state, action) => {
             state.splice(action.payload.index, 0, action.payload.data);
         },
+        // JobSharePage
+        addJobShareToProcessing: (state, action) => {
+            const index = state.findIndex((job) => job.id === action.payload);
+            state[index].helpers?.push('Quang Đạt');
+        },
+        shareJobProcess: (state, action) => {
+            const index = state.findIndex((job) => job.id === action.payload.id);
+            state[index].type = 'Việc được chia sẻ';
+            state[index].owner = 'Quang Đạt';
+            if (state[index].group_shared) {
+                state[index].group_shared?.push(action.payload.groupShare);
+            } else state[index].group_shared = [action.payload.groupShare];
+        },
     },
 });
 
@@ -57,6 +70,8 @@ export const {
     changeStatusToProcessing,
     changeOrderProcess,
     moveToProcessing,
+    addJobShareToProcessing,
+    shareJobProcess,
 } = procesSlice.actions;
 
 export default procesSlice.reducer;

@@ -57,6 +57,21 @@ html *::-webkit-scrollbar {
     align-items: center;
 }
 
+.column {
+    display: flex;
+    flex-direction: column;
+}
+
+.v-center {
+    display: flex;
+    align-items: center;
+}
+
+.h-center {
+    display: flex;
+    justify-content: center;
+}
+
 .linear-color {
     background: var(--linear-color);
     -webkit-background-clip: text;

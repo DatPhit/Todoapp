@@ -4,6 +4,8 @@
 // | 'Nhóm Nhật ngành'
 // | 'Nhóm thực tập';
 
+import { groupsProps } from './ListJob';
+
 export interface memberProps {
     name: string;
     role: 'Owner' | 'Member';
@@ -11,7 +13,7 @@ export interface memberProps {
 }
 
 export interface listGroupProps {
-    name: string;
+    name: groupsProps;
     image: string;
     members: memberProps[];
 }
@@ -135,7 +137,7 @@ export const listGroup: listGroupProps[] = [
                 avatar: 'https://cdn3.iconfinder.com/data/icons/diversity-avatars-vol-2/64/charlie-chaplan-actor-entertainer-512.png',
             },
             {
-                name: 'Đỗ Thị Nở',
+                name: 'Đỗ Thị Hà',
                 role: 'Member',
                 avatar: 'https://cdn4.iconfinder.com/data/icons/people-avatar-filled-outline/64/girl_Islam_beautiful_people_woman_hijab_avatar-512.png',
             },
@@ -143,6 +145,11 @@ export const listGroup: listGroupProps[] = [
                 name: 'Nguyễn Văn Kiên',
                 role: 'Member',
                 avatar: 'https://cdn4.iconfinder.com/data/icons/occupation-and-people-avatar-vol-2-1/128/man_avatar_assistant_career_people_male_co-founder-512.png',
+            },
+            {
+                name: 'Quang Đạt',
+                role: 'Member',
+                avatar: 'https://cdn4.iconfinder.com/data/icons/avatars-circle-2/72/133-512.png',
             },
         ],
     },
