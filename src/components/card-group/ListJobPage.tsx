@@ -19,7 +19,8 @@ function ListJobPage({ group }: ListJobPageProps) {
                     <th>Tên công việc</th>
                     <th>Trạng thái</th>
                     <th>Mức độ ưu tiên</th>
-                    <th>Deadline</th>
+                    <th>Ngày bắt đầu</th>
+                    <th>Ngày kết thúc</th>
                 </tr>
             </thead>
             <tbody>
@@ -29,6 +30,7 @@ function ListJobPage({ group }: ListJobPageProps) {
                         <td>{job.task}</td>
                         <td>{job.status}</td>
                         <td>{job.priority}</td>
+                        <td>{moment(job.start_date).format('HH:mm DD-MM-YYYY')}</td>
                         <td>{moment(job.deadline).format('HH:mm DD-MM-YYYY')}</td>
                     </tr>
                 ))}

@@ -30,6 +30,7 @@ const CardJob: React.FC<CardJobProps> = ({ Job }) => {
         id,
         task,
         status,
+        start_date,
         deadline,
         steps,
         description,
@@ -223,7 +224,12 @@ const CardJob: React.FC<CardJobProps> = ({ Job }) => {
                     showDetails ? 'bottom-3' : 'bottom-10'
                 }`}
             >
+                {/* Ngày bắt dầu -> Deadline */}
                 <div className="flex-grow-1 position-relative">
+                    <div className="linear-color  position-absolute start-2 bottom-100">
+                        {moment(start_date).format('HH:mm DD-MM-YY')}
+                    </div>
+
                     <div className="linear-color  position-absolute end-0 bottom-100">
                         {moment(deadline).format('HH:mm DD-MM-YY')}
                     </div>

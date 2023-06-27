@@ -14,6 +14,8 @@ export const filterGroupnameSelector = (state: RootState) => state.filter.groupn
 export const filterPrioritySelector = (state: RootState) => state.filter.priority;
 export const filterDeadlineDateSelector = (state: RootState) => state.filter.deadlineDate;
 export const filterDeadlineAsDeSelector = (state: RootState) => state.filter.deadlineAsDe;
+export const filterStartDateSelector = (state: RootState) => state.filter.startDate;
+export const filterStartDateAsDeSelector = (state: RootState) => state.filter.startAsDe;
 
 export const filterListSelector = createSelector(
     todoListSelector,
@@ -26,6 +28,8 @@ export const filterListSelector = createSelector(
     filterPrioritySelector,
     filterDeadlineDateSelector,
     filterDeadlineAsDeSelector,
+    filterStartDateSelector,
+    filterStartDateAsDeSelector,
     (
         todoList,
         processList,
@@ -37,6 +41,8 @@ export const filterListSelector = createSelector(
         priority,
         deadlineDate,
         deadlineAsDe,
+        startDate,
+        startDateAsDe,
     ) => {
         const list = todoList.concat(processList).concat(doneList);
         if (deadlineAsDe === 'desc') {
@@ -45,12 +51,24 @@ export const filterListSelector = createSelector(
         if (deadlineAsDe === 'asc') {
             list.sort((a, b) => new Date(a.deadline).getTime() - new Date(b.deadline).getTime());
         }
+
+        if (startDateAsDe === 'desc') {
+            list.sort(
+                (a, b) => new Date(b.start_date).getTime() - new Date(a.start_date).getTime(),
+            );
+        }
+        if (startDateAsDe === 'asc') {
+            list.sort(
+                (a, b) => new Date(a.start_date).getTime() - new Date(b.start_date).getTime(),
+            );
+        }
         return list.filter((job) => {
             if (
                 job.task.includes(searchValue) &&
                 job.workplace.includes(workplace) &&
                 job.groupname.includes(groupname) &&
-                (deadlineDate !== '' ? job.deadline <= deadlineDate : true)
+                (deadlineDate !== '' ? job.deadline <= deadlineDate : true) &&
+                (startDate !== '' ? job.start_date > startDate : true)
             ) {
                 if (type === 'ALL') {
                     return priority === 'not' ? job : job.priority.includes(priority);

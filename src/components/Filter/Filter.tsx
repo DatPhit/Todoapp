@@ -10,6 +10,8 @@ import {
     workplaceFilterChange,
     searchFilterChange,
     typeFilterChange,
+    startDateFilterChange,
+    startAsDeFilterChange,
 } from './FilterSlice';
 import './Filter.scss';
 import { Button, Col, Form, Row } from 'react-bootstrap';
@@ -21,6 +23,8 @@ function Filter() {
 
     const [searchValue, setSearchValue] = useState('');
     const [type, setType] = useState('ALL');
+    const [startDate, setStartDate] = useState('2023-05-31');
+    const [startAsDe, setStartAsDe] = useState('');
     const [deadlineDate, setDeadlineDate] = useState('2030-06-15');
     const [deadlineAsDe, setDeadlineAsDe] = useState('');
     const [workplace, setWorkplace] = useState('');
@@ -32,13 +36,17 @@ function Filter() {
     const handleCancelFilter = () => {
         setSearchValue('');
         setType('ALL');
+        setStartDate('2023-05-31');
+        setStartAsDe('');
         setDeadlineDate('2030-06-15');
         setDeadlineAsDe('');
         setWorkplace('');
         setPriority('not');
         setGroupname('');
-        dispatch(deadlineAsDeFilterChange(''));
+        dispatch(startDateFilterChange('2023-05-31'));
+        dispatch(startAsDeFilterChange(''));
         dispatch(deadlineDateFilterChange('2030-06-15'));
+        dispatch(deadlineAsDeFilterChange(''));
         dispatch(groupnameFilterChange(''));
         dispatch(priorityFilterChange('not'));
         dispatch(workplaceFilterChange(''));
@@ -247,13 +255,95 @@ function Filter() {
                                                 dispatch(priorityFilterChange(e.target.value));
                                             }}
                                         >
-                                            <option value="">Select priority</option>
                                             <option value="not">ALL</option>
                                             <option value="Low">Low</option>
                                             <option value="Normal">Normal</option>
                                             <option value="Medium">Medium</option>
                                             <option value="High">High</option>
                                         </Form.Select>
+                                    </div>
+                                </Col>
+
+                                {/* Start Date */}
+                                <Col xs={4}>
+                                    <div className="mb-3 d-flex">
+                                        <div className="w-25">Start date</div>
+                                        <div className="flex-grow- d-flex flex-column">
+                                            <input
+                                                type="datetime-local"
+                                                className="w-100"
+                                                value={startDate}
+                                                min="2023-06-01T00:00"
+                                                onChange={(e) => {
+                                                    setStartDate(e.target.value);
+                                                    dispatch(startDateFilterChange(e.target.value));
+                                                }}
+                                            />
+                                            <div className="d-flex flex-row-reverse justify-content-end align-items-center">
+                                                <label htmlFor="startdatedf" className="ms-1 p-1">
+                                                    Mặc định
+                                                </label>
+                                                <Form.Check
+                                                    checked={startAsDe === ''}
+                                                    id="startdatedf"
+                                                    name="startdate"
+                                                    type="radio"
+                                                    value=""
+                                                    onChange={(e) => {
+                                                        setStartAsDe(e.target.value);
+                                                        dispatch(
+                                                            startAsDeFilterChange(e.target.value),
+                                                        );
+                                                    }}
+                                                />
+                                            </div>
+                                            <div className="d-flex flex-row-reverse justify-content-end align-items-center">
+                                                <label htmlFor="startdateasc" className="ms-1 p-1">
+                                                    Gần nhất{' '}
+                                                    <FontAwesomeIcon
+                                                        className="mx-1"
+                                                        icon={faArrowRight}
+                                                    />{' '}
+                                                    Xa Nhất
+                                                </label>
+                                                <Form.Check
+                                                    checked={startAsDe === 'asc'}
+                                                    id="startdateasc"
+                                                    name="startdate"
+                                                    type="radio"
+                                                    value="asc"
+                                                    onChange={(e) => {
+                                                        setStartAsDe(e.target.value);
+                                                        dispatch(
+                                                            startAsDeFilterChange(e.target.value),
+                                                        );
+                                                    }}
+                                                />
+                                            </div>
+                                            <div className="d-flex flex-row-reverse justify-content-end align-items-center">
+                                                <label htmlFor="startdatedesc" className="ms-1 p-1">
+                                                    Xa nhất{' '}
+                                                    <FontAwesomeIcon
+                                                        className="mx-1"
+                                                        icon={faArrowRight}
+                                                    />{' '}
+                                                    Gần Nhất
+                                                </label>
+                                                <Form.Check
+                                                    checked={startAsDe === 'desc'}
+                                                    id="startdatedesc"
+                                                    name="startdate"
+                                                    type="radio"
+                                                    value="desc"
+                                                    onChange={(e) => {
+                                                        setStartAsDe(e.target.value);
+                                                        dispatch(
+                                                            startAsDeFilterChange(e.target.value),
+                                                        );
+                                                    }}
+                                                />
+                                            </div>
+                                        </div>
                                     </div>
                                 </Col>
 

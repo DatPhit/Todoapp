@@ -68,7 +68,11 @@ function JobSharePage({ group }: JobSharePageProps) {
                                     ))}
                                 </ul>
                                 <div>
-                                    <b>Deadline: </b>{' '}
+                                    <b>Ngày bắt đầu: </b>{' '}
+                                    {moment(job.start_date).format('HH:mm | DD-MM-YYYY')}
+                                </div>
+                                <div>
+                                    <b>Ngày kết thúc: </b>{' '}
                                     {moment(job.deadline).format('HH:mm | DD-MM-YYYY')}
                                 </div>
                             </div>

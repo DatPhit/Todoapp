@@ -116,8 +116,8 @@ function QuickFilter({
                     High
                 </button>
 
-                {/*  lọc công việc theo Date */}
-                <div className="mt-2 mb-3 fw-medium ">Date</div>
+                {/*  lọc công việc theo Deadline */}
+                <div className="mt-2 mb-3 fw-medium ">Deadline</div>
                 <button
                     className={`filter_type mb-4 ${deadlineAsDe === '' && 'type_active'}`}
                     value=""
