@@ -10,16 +10,16 @@ import './CardJob.scss';
 import { ListJobProps } from '../../Model/ListJob';
 import { deleteTodo } from '../../pages/Home/todoSlice';
 import {
-    addProcess,
     changeStepStatusToDone,
     changeStepStatusToProcessing,
     changeStepStatusToTodo,
     deleteProcess,
 } from '../../pages/Home/processSlice';
-import { addDone, changeStatusToDone, deleteDone } from '../../pages/Home/doneSlice';
+import { addDone, changeStatusToDone } from '../../pages/Home/doneSlice';
 import ModalEditTask from '../modal/ModalEditTask';
 import ModalDeleteTask from '../modal/ModalDeleteTask';
 import ModalShareTask from '../modal/ModalShareTask';
+import ModalReviewTask from '../modal/ModalReviewTask';
 
 interface CardJobProps {
     Job: ListJobProps;
@@ -40,6 +40,7 @@ const CardJob: React.FC<CardJobProps> = ({ Job }) => {
         group_shared,
         owner,
         helpers,
+        review,
     } = Job;
 
     // Redux
@@ -74,6 +75,9 @@ const CardJob: React.FC<CardJobProps> = ({ Job }) => {
 
     // handle show modal when click share job
     const [showModalShareTask, setShowModalShareTask] = useState(false);
+
+    // handle show modal when click review job
+    const [showModalReviewTask, setShowModalReviewTask] = useState(false);
 
     // Xử lý click badge ở cột Processing
     const handleClickBadge = (index: number) => {
@@ -156,7 +160,12 @@ const CardJob: React.FC<CardJobProps> = ({ Job }) => {
                             Xóa
                         </button>
                         {status === 'Done' && (
-                            <button className="cardjob_button_option ">Đánh giá</button>
+                            <button
+                                className="cardjob_button_option "
+                                onClick={() => setShowModalReviewTask(true)}
+                            >
+                                {review ? 'Xem đánh giá' : 'Đánh giá'}
+                            </button>
                         )}
                     </div>
                 )}
@@ -179,6 +188,12 @@ const CardJob: React.FC<CardJobProps> = ({ Job }) => {
                 job={Job}
                 show={showModalShareTask}
                 hide={() => setShowModalShareTask(false)}
+            />
+
+            <ModalReviewTask
+                job={Job}
+                show={showModalReviewTask}
+                hide={() => setShowModalReviewTask(false)}
             />
 
             {/* Card head */}

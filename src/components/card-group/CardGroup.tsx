@@ -1,27 +1,19 @@
-import { Figure, Modal, Tab, Table, Tabs } from 'react-bootstrap';
+import { Figure, Modal, Tab, Tabs } from 'react-bootstrap';
 import { listGroupProps } from '../../Model/listGroup';
 import { useState } from 'react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faXmark } from '@fortawesome/free-solid-svg-icons';
 
 import './cardgroup.scss';
-import { ListJob } from '../../Model/ListJob';
-import moment from 'moment';
 import JobSharePage from './JobSharePage';
+import MemberPage from './MemberPage';
+import ListJobPage from './ListJobPage';
+import ReviewJobPage from './ReviewJobPage';
 
 interface CardGroupProps {
     group: listGroupProps;
 }
 
 function CardGroup({ group }: CardGroupProps) {
-    const adminName = 'Quang Đạt';
     const [showModal, setShowModal] = useState(false);
-    const ownerOfGroup = group.members.find((mem) => mem.role === 'Owner')?.name;
-    const listJobsOfGrounp = ListJob.filter((job) => job.groupname === group.name);
-    listJobsOfGrounp.sort((a, b) => {
-        const order = ['Todo', 'Processing', 'Done'];
-        return order.indexOf(a.status) - order.indexOf(b.status);
-    });
 
     return (
         <div>
@@ -64,87 +56,21 @@ function CardGroup({ group }: CardGroupProps) {
                         >
                             {/* Trang thành viên */}
                             <Tab eventKey="members" title="Thành viên">
-                                <div className="mt-4 fs-5 fw-medium d-flex justify-content-around">
-                                    <div className="">Tên thành viên</div>
-                                    <div className=""></div>
-                                    <div className="">Role</div>
-                                </div>
-                                <hr className=" mb-0" />
-                                <div className="d-flex flex-column ">
-                                    {group.members.map((member, index) => (
-                                        <div key={index} className="position-relative">
-                                            <div className="cardgroup_member_item w-100 d-flex align-items-center">
-                                                <img
-                                                    src={member.avatar}
-                                                    alt="avatar"
-                                                    style={{
-                                                        marginLeft: '6.5rem',
-                                                        width: '2.5rem',
-                                                        height: '2.5rem',
-                                                    }}
-                                                />
-                                                <div className="ms-3 flex-grow-1">
-                                                    {member.name}
-                                                </div>
-                                                <div
-                                                    className="fs-5"
-                                                    style={{ marginRight: '9rem' }}
-                                                >
-                                                    {member.role}
-                                                </div>
-                                                <div className="position-absolute end-2">
-                                                    {ownerOfGroup === adminName &&
-                                                        member.name !== adminName && (
-                                                            <FontAwesomeIcon
-                                                                icon={faXmark}
-                                                                size="xl"
-                                                            />
-                                                        )}
-                                                    {member.name === adminName && (
-                                                        <div className="fw-light fs-5">Bạn</div>
-                                                    )}
-                                                </div>
-                                            </div>
-                                            <hr className="m-0" />
-                                        </div>
-                                    ))}
-                                </div>
+                                <MemberPage group={group} />
                             </Tab>
 
                             {/* Trang công việc */}
                             <Tab eventKey="task" title="Công việc">
-                                <Table bordered hover className="fs-5">
-                                    <thead>
-                                        <tr>
-                                            <th>#</th>
-                                            <th>Tên công việc</th>
-                                            <th>Trạng thái</th>
-                                            <th>Mức độ ưu tiên</th>
-                                            <th>Deadline</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        {listJobsOfGrounp.map((job, index) => (
-                                            <tr key={index}>
-                                                <td>{index + 1}</td>
-                                                <td>{job.task}</td>
-                                                <td>{job.status}</td>
-                                                <td>{job.priority}</td>
-                                                <td>
-                                                    {moment(job.deadline).format(
-                                                        'HH:mm DD-MM-YYYY',
-                                                    )}
-                                                </td>
-                                            </tr>
-                                        ))}
-                                    </tbody>
-                                </Table>
+                                <ListJobPage group={group} />
                             </Tab>
+                            {/* Trang công việc được chia sẻ */}
                             <Tab eventKey="task-share" title="Công việc được chia sẻ">
                                 <JobSharePage group={group} />
                             </Tab>
+
+                            {/* Trang đánh giấ */}
                             <Tab eventKey="rate" title="Đánh giá">
-                                Tab content for Contact
+                                <ReviewJobPage group={group} />
                             </Tab>
                         </Tabs>
                     </Modal.Body>

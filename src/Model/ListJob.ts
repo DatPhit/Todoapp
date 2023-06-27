@@ -25,6 +25,7 @@ export interface ListJobProps {
     group_shared?: groupsProps[] | string[];
     owner?: string;
     helpers?: string[];
+    review?: string;
 }
 
 export const ListJob: ListJobProps[] = [
@@ -58,6 +59,7 @@ export const ListJob: ListJobProps[] = [
         type: 'Việc nhóm',
         priority: 'Normal',
         groupname: 'Nhóm UI_UX',
+        review: 'Chất lượng công việc: Công việc đã được thực hiện đúng và đạt chất lượng cao. Các bước thực hiện như xác định thời gian và địa điểm họp, chuẩn bị agenda buổi họp và gửi thông báo cho thành viên đều đã được hoàn thành.  Hiệu suất và năng suất: Công việc đã được thực hiện một cách hiệu quả và năng suất. Việc chuẩn bị và tổ chức buổi họp dự án đã được tiến hành một cách chủ động và kịp thời.',
     },
     {
         id: 3,
@@ -105,6 +107,7 @@ export const ListJob: ListJobProps[] = [
         type: 'Việc cá nhân',
         priority: 'High',
         groupname: '',
+        review: 'Hoàn thành theo tiến độ: Công việc đã được hoàn thành trước thời hạn, với deadline là ngày 30 tháng 6 năm 2023 vào lúc 15:00. Chất lượng công việc: Công việc đã được thực hiện đúng và đạt chất lượng cao. Các bước thực hiện như nghiên cứu và phân tích yêu cầu, thiết kế và triển khai giải pháp, kiểm thử và sửa lỗi đều đã được hoàn thành. Hiệu suất và năng suất: Công việc đã được thực hiện một cách hiệu quả và năng suất. Việc hoàn thiện bài tập lớn môn học đã được tiến hành với sự tập trung cao độ và đáp ứng đầy đủ yêu cầu của nhiệm vụ. Độ ưu tiên: Công việc được xác định có mức độ ưu tiên cao, đòi hỏi sự chú trọng và đảm bảo hoàn thành đúng hạn.',
     },
     {
         id: 6,
@@ -422,6 +425,7 @@ export const ListJob: ListJobProps[] = [
         type: 'Việc nhóm',
         priority: 'Low',
         groupname: 'Nhóm ITSS',
+        review: 'công việc "Triển khai hệ thống CRM" đã được hoàn thành đúng tiến độ, đạt chất lượng cao và mang lại lợi ích cho công ty. Hệ thống CRM giúp công ty quản lý khách hàng hiệu quả hơn, nâng cao khả năng tương tác và tạo điều kiện thuận lợi cho việc kinh doanh.',
     },
     {
         id: 27,
@@ -467,6 +471,7 @@ export const ListJob: ListJobProps[] = [
         type: 'Việc cá nhân',
         priority: 'High',
         groupname: '',
+        review: 'Công việc đã được hoàn thành đúng tiến độ, đạt chất lượng cao và mang lại lợi ích cho công ty. Việc đào tạo nhân viên giúp nâng cao năng lực làm việc, cải thiện chất lượng công việc và tạo điều kiện phát triển cho nhân viên.',
     },
     {
         id: 30,
@@ -579,6 +584,7 @@ export const ListJob: ListJobProps[] = [
         workplace: 'Công ty ABC',
         type: 'Việc nhóm',
         groupname: 'Nhóm Hero',
+        review: 'Công việc đã được hoàn thành đúng tiến độ, đạt chất lượng cao và mang lại kết quả tích cực cho công ty. Việc triển khai chiến dịch marketing góp phần quảng bá và tạo nên sự thành công cho sản phẩm mới, thu hút khách hàng và tăng doanh số bán hàng.',
     },
     {
         id: 37,
@@ -647,6 +653,7 @@ export const ListJob: ListJobProps[] = [
         workplace: 'Công ty ABC',
         type: 'Việc nhóm',
         groupname: 'Nhóm Hero',
+        review: 'Công việc đã được thực hiện một cách hiệu quả và năng suất. Sự kiện công ty đã được tổ chức thành công, tạo ra tinh thần đoàn kết và gắn kết cho nhân viên.',
     },
     {
         id: 41,
@@ -749,6 +756,7 @@ export const ListJob: ListJobProps[] = [
         workplace: 'Bách khoa',
         type: 'Việc nhóm',
         groupname: 'Nhóm Nhật ngành',
+        review: 'Công việc đã được thực hiện một cách chuyên nghiệp và chất lượng. Các bước thực hiện như lập kế hoạch lắp đặt mạng, lắp đặt thiết bị mạng, cấu hình mạng và kiểm tra, đào tạo nhân viên sử dụng đều đã được hoàn thành.',
     },
     {
         id: 47,
@@ -783,6 +791,7 @@ export const ListJob: ListJobProps[] = [
         workplace: 'Công ty ABC',
         type: 'Việc nhóm',
         groupname: 'Nhóm Nhật ngành',
+        review: 'Chất lượng công việc: Công việc đã được thực hiện một cách chuyên nghiệp và chất lượng. Các bước thực hiện như nghiên cứu và lựa chọn chủ đề, viết bài và chỉnh sửa, tạo ảnh minh họa và thiết kế, đăng bài và chia sẻ đều đã được hoàn thành.',
     },
     {
         id: 49,

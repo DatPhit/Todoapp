@@ -44,6 +44,10 @@ export const doneSlice = createSlice({
                 state[index].group_shared?.push(action.payload.groupShare);
             } else state[index].group_shared = [action.payload.groupShare];
         },
+        saveReview: (state, action) => {
+            const index = state.findIndex((job) => job.id === action.payload.id);
+            state[index].review = action.payload.data;
+        },
     },
 });
 
@@ -56,6 +60,7 @@ export const {
     moveToDone,
     addJobShareToDone,
     shareJobDone,
+    saveReview,
 } = doneSlice.actions;
 
 export default doneSlice.reducer;

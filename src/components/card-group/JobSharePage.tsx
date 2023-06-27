@@ -3,7 +3,7 @@ import { ListJobProps } from '../../Model/ListJob';
 import { listGroupProps } from '../../Model/listGroup';
 import moment from 'moment';
 import { useDispatch, useSelector } from 'react-redux';
-import { addJobShareToProcessing, addProcess } from '../../pages/Home/processSlice';
+import { addJobShareToProcessing } from '../../pages/Home/processSlice';
 import { addJobShareToTodo } from '../../pages/Home/todoSlice';
 import { addJobShareToDone } from '../../pages/Home/doneSlice';
 import { filterListSelector } from '../../redux/selectors';
@@ -38,7 +38,7 @@ function JobSharePage({ group }: JobSharePageProps) {
         }
     };
     return (
-        <Table bordered hover>
+        <Table bordered hover className="fs-5">
             <thead>
                 <tr className="fs-5">
                     <th>#</th>

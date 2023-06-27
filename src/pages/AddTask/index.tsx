@@ -80,13 +80,13 @@ function AddTask() {
         <div
             className="h-100 rounded-4 position-relative"
             // backgroundColor: '#f0f8ff'
-            style={{ marginLeft: '-1rem' }}
+            style={{ marginLeft: '-2.5rem' }}
         >
             <h2 className="ms-5 pt-3">Thêm công việc mới </h2>
             <hr className="ms-5" />
             <Form className="mt-3 mx-5">
                 <Row>
-                    <Col className="addtask_colleft">
+                    <Col className="addtask_colleft overflow-y-scroll" style={{ height: '88vh' }}>
                         {/* Type */}
                         <div className="mb-3 d-flex">
                             <div className="w-25">Type</div>
@@ -128,7 +128,7 @@ function AddTask() {
                             <FontAwesomeIcon className="ms-2" icon={faPlus} />
                         </Button>
                     </Col>
-                    <Col className="position-relative">
+                    <Col>
                         {/* workplace */}
                         <div className="mb-3 d-flex">
                             <div className="w-25">Workplace</div>
@@ -189,7 +189,7 @@ function AddTask() {
                                 min="2023-06-21T00:00"
                             />
                         </div>
-                        <div className="position-absolute end-3 bottom-0">
+                        <div className="position-absolute end-3 bottom-5">
                             <Button variant="secondary" className="me-3">
                                 Cancel
                             </Button>

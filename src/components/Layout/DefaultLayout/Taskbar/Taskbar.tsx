@@ -66,7 +66,6 @@ function Taskbar() {
                         href="/"
                     />
                     <NavItem text="Xem nhóm" icon={faPeopleGroup} href="/group" />
-                    <NavItem text="Thông tin cá nhân" icon={faUser} href="/me" />
                     <NavItem text="Thêm công việc mới" icon={faPlus} href="/add-task" />
                 </div>
             )}
