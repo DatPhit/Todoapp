@@ -7,11 +7,13 @@ import { listGroupNameJobs, listWorkplaceJobs } from '../../Services/ProjectsSer
 import { addTodo } from '../Home/todoSlice';
 import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
+import { addNotify } from '../../components/Notification/notifycationSlice';
 
 const { v4: uuidv4 } = require('uuid');
 
 function AddTask() {
     const [task, setTask] = useState('');
+    const [startDate, setStartDate] = useState(Date.now().toString());
     const [deadline, setDeadline] = useState('');
     const [description, setDescription] = useState('');
     const [workplace, setWorkplace] = useState('');
@@ -64,6 +66,7 @@ function AddTask() {
                 id: uuidv4(),
                 task,
                 status: 'Todo',
+                start_date: startDate,
                 deadline,
                 steps,
                 description,
@@ -74,6 +77,12 @@ function AddTask() {
             }),
         );
         linkRef.current?.click();
+        dispatch(
+            addNotify({
+                type: 'success',
+                text: `Thêm công việc *${task}* thành công!`,
+            }),
+        );
     };
 
     return (
@@ -178,6 +187,18 @@ function AddTask() {
                             </Form.Select>
                         </div>
 
+                        {/* Start Date */}
+                        <div className="mb-3 d-flex align-items-center">
+                            <div className="w-25">Start date</div>
+                            <input
+                                type="datetime-local"
+                                className="w-100"
+                                value={startDate}
+                                onChange={(e) => setStartDate(e.target.value)}
+                                min="2023-06-02T00:00"
+                            />
+                        </div>
+
                         {/* Dealine */}
                         <div className="mb-3 d-flex align-items-center">
                             <div className="w-25">Deadline</div>
@@ -190,10 +211,9 @@ function AddTask() {
                             />
                         </div>
                         <div className="position-absolute end-3 bottom-5">
-                            <Button variant="secondary" className="me-3">
-                                Cancel
+                            <Button size="lg" onClick={handleAddTask}>
+                                Add Task
                             </Button>
-                            <Button onClick={handleAddTask}>Add Task</Button>
                             <Link to="/" ref={linkRef}></Link>
                         </div>
                     </Col>

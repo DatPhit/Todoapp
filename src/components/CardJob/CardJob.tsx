@@ -138,6 +138,7 @@ const CardJob: React.FC<CardJobProps> = ({ Job }) => {
                         className="z-1 border border-1 border-secondary rounded-3 overflow-hidden d-flex flex-column position-absolute top-10 end-100"
                         style={{ minWidth: '10rem' }}
                     >
+                        {/* Chỉnh sửa */}
                         <button
                             className="cardjob_button_option"
                             onClick={() => setShowModalEditTask(true)}
@@ -145,6 +146,7 @@ const CardJob: React.FC<CardJobProps> = ({ Job }) => {
                             Chỉnh sửa
                         </button>
 
+                        {/* Chia sẻ */}
                         {(type === 'Việc cá nhân' ||
                             (type === 'Việc được chia sẻ' && owner === 'Quang Đạt')) && (
                             <button
@@ -155,12 +157,7 @@ const CardJob: React.FC<CardJobProps> = ({ Job }) => {
                             </button>
                         )}
 
-                        <button
-                            className="cardjob_button_option "
-                            onClick={() => setShowModalDeleteTask(true)}
-                        >
-                            Xóa
-                        </button>
+                        {/* Đánh giá */}
                         {status === 'Done' && (
                             <button
                                 className="cardjob_button_option "
@@ -169,6 +166,14 @@ const CardJob: React.FC<CardJobProps> = ({ Job }) => {
                                 {review ? 'Xem đánh giá' : 'Đánh giá'}
                             </button>
                         )}
+
+                        {/* Xóa */}
+                        <button
+                            className="cardjob_button_option "
+                            onClick={() => setShowModalDeleteTask(true)}
+                        >
+                            Xóa
+                        </button>
                     </div>
                 )}
             </div>

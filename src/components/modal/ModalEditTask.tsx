@@ -8,6 +8,7 @@ import { editProcess } from '../../pages/Home/processSlice';
 import { editDone } from '../../pages/Home/doneSlice';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faXmark } from '@fortawesome/free-solid-svg-icons';
+import { addNotify } from '../Notification/notifycationSlice';
 
 interface ModalEditTaskProps {
     job: ListJobProps;
@@ -98,6 +99,12 @@ function ModalEditTask({ job, show, hide }: ModalEditTaskProps) {
             );
         }
         hide();
+        dispatch(
+            addNotify({
+                type: 'success',
+                text: `Chỉnh sửa công việc *${job.task}* thành công`,
+            }),
+        );
     };
 
     return (

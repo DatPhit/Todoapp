@@ -50,7 +50,7 @@ function CardGroup({ group }: CardGroupProps) {
                         <Tabs
                             defaultActiveKey="members"
                             id="fill-tab-example"
-                            className="mb-3"
+                            className="mb-3 position-relative"
                             fill
                             variant="underline"
                         >

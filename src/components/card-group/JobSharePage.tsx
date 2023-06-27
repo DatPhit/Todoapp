@@ -7,6 +7,7 @@ import { addJobShareToProcessing } from '../../pages/Home/processSlice';
 import { addJobShareToTodo } from '../../pages/Home/todoSlice';
 import { addJobShareToDone } from '../../pages/Home/doneSlice';
 import { filterListSelector } from '../../redux/selectors';
+import { addNotify } from '../Notification/notifycationSlice';
 
 interface JobSharePageProps {
     group: listGroupProps;
@@ -36,6 +37,12 @@ function JobSharePage({ group }: JobSharePageProps) {
         if (job.status === 'Done') {
             dispatch(addJobShareToDone(job.id));
         }
+        dispatch(
+            addNotify({
+                type: 'info',
+                text: `Bạn đang cứu ${job.owner} với công việc *${job.task}* ở trạng thái ${job.status}`,
+            }),
+        );
     };
     return (
         <Table bordered hover className="fs-5">

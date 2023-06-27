@@ -3,6 +3,7 @@ import { useDispatch } from 'react-redux';
 import { saveReview } from '../../pages/Home/doneSlice';
 import { ListJobProps } from '../../Model/ListJob';
 import { useState } from 'react';
+import { addNotify } from '../Notification/notifycationSlice';
 
 interface ModalReviewTaskProps {
     job: ListJobProps;
@@ -23,7 +24,13 @@ function ModalReviewTask({ job, show, hide }: ModalReviewTaskProps) {
             }),
         );
         hide();
-        if (review) setIsDisabled(true);
+        if (review) setTimeout(() => setIsDisabled(true), 1000);
+        dispatch(
+            addNotify({
+                type: 'success',
+                text: `Đánh giá công việc *${job.task}* thành công`,
+            }),
+        );
     };
     return (
         <Modal size="lg" show={show} onHide={hide}>

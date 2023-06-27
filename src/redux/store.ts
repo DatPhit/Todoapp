@@ -4,6 +4,7 @@ import procesSliceReducer from '../pages/Home/processSlice';
 import doneSliceReducer from '../pages/Home/doneSlice';
 import filterReducer from '../components/Filter/FilterSlice';
 import authenReducer from '../components/Layout/DefaultLayout/Taskbar/authenSlice';
+import notifyReducer from '../components/Notification/notifycationSlice';
 
 const store = configureStore({
     reducer: {
@@ -12,6 +13,7 @@ const store = configureStore({
         doneList: doneSliceReducer,
         filter: filterReducer,
         authen: authenReducer,
+        notify: notifyReducer,
     },
 });
 

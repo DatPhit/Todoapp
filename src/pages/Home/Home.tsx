@@ -1,10 +1,7 @@
 import { Col, Row } from 'react-bootstrap';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faBell } from '@fortawesome/free-solid-svg-icons';
 import { useDispatch, useSelector } from 'react-redux';
 
 import './Home.scss';
-import Notification from '../../components/Notification/Notification';
 import CardJob from '../../components/CardJob/CardJob';
 import { filterListSelector } from '../../redux/selectors';
 import { ListJobProps } from '../../Model/ListJob';
@@ -19,6 +16,7 @@ import {
     moveToProcessing,
 } from './processSlice';
 import { changeOrderDone, changeStatusToDone, deleteDone, moveToDone } from './doneSlice';
+import { addNotify } from '../../components/Notification/notifycationSlice';
 
 function Home() {
     // Redux
@@ -51,6 +49,38 @@ function Home() {
     const handleDragEnd = (result: DropResult) => {
         // console.log(result);
         if (!result.destination) return;
+
+        // Thông báo
+        const data = newlist.find((job) => job.id.toString() === result.draggableId);
+        if (
+            result.source.droppableId !== 'Processing' &&
+            result.destination.droppableId === 'Processing'
+        ) {
+            dispatch(
+                addNotify({
+                    type: 'info',
+                    text: `Công việc *${data?.task}* đã chuyển sang trạng thái Processing`,
+                }),
+            );
+        }
+
+        if (result.source.droppableId !== 'Done' && result.destination.droppableId === 'Done') {
+            dispatch(
+                addNotify({
+                    type: 'success',
+                    text: `Công việc *${data?.task}* đã chuyển sang trạng thái Done`,
+                }),
+            );
+        }
+
+        if (result.source.droppableId !== 'Todo' && result.destination.droppableId === 'Todo') {
+            dispatch(
+                addNotify({
+                    type: 'normal',
+                    text: `Công việc *${data?.task}* đã chuyển sang trạng thái Todo`,
+                }),
+            );
+        }
 
         // Drag từ cột todo
         if (result.source.droppableId === 'Todo') {
@@ -160,36 +190,6 @@ function Home() {
 
     return (
         <div className="ms-2 me-3">
-            {/* Phần đầu của content */}
-            {false && (
-                <Row className="gap-2" style={{ height: '29vh' }}>
-                    {/* Notification */}
-                    <Col className="bg home_col_head ms-2" style={{ backgroundColor: '#343446' }}>
-                        <div className="home_head_content home_notifyication">
-                            Thông báo
-                            <div className="position-relative">
-                                <FontAwesomeIcon icon={faBell} />
-                                <span className="position-absolute top-20 right-20 translate-middle p-1 bg-danger rounded-circle">
-                                    <span className="visually-hidden">New alerts</span>
-                                </span>
-                            </div>
-                        </div>
-                        <div className="overflow-y-scroll" style={{ height: '80%' }}>
-                            <div className="mt-2 mx-3">
-                                <Notification type="success" text="Bạn đã đăng nhập thành công" />
-                                <Notification type="warning" text="Công việc sắp dến hạn" />
-                                <Notification
-                                    type="success"
-                                    text="Bạn đã thêm công việc mới thành công"
-                                />
-                                <Notification type="danger" text="Công việc  đã quá hạn" />
-                                <Notification type="warning" text="Công việc sắp dến hạn" />
-                            </div>
-                        </div>
-                    </Col>
-                </Row>
-            )}
-
             {/* Phần Content chính */}
             <div style={{ height: '100vh' }}>
                 <Row className="h-100">

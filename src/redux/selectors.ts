@@ -2,6 +2,7 @@ import { createSelector } from '@reduxjs/toolkit';
 import { RootState } from './store';
 
 export const authenSelector = (state: RootState) => state.authen.status;
+export const notifySelector = (state: RootState) => state.notify;
 
 export const todoListSelector = (state: RootState) => state.todoList;
 export const processListSelector = (state: RootState) => state.processList;

@@ -50,7 +50,7 @@ export const ListJob: ListJobProps[] = [
         id: 2,
         task: 'Chuẩn bị buổi họp dự án',
         status: 'Done',
-        start_date: '2023-06-1T17:20',
+        start_date: '2023-06-01T17:20',
         deadline: '2023-06-02T17:20',
         steps: [
             { stt: 'Done', name: 'Xác định thời gian và địa điểm họp' },

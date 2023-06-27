@@ -2,11 +2,12 @@ import { faShareFromSquare } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Button, Modal, Table } from 'react-bootstrap';
 import { useDispatch } from 'react-redux';
-import { deleteTodo, shareJobTodo } from '../../pages/Home/todoSlice';
-import { deleteProcess, shareJobProcess } from '../../pages/Home/processSlice';
-import { deleteDone, shareJobDone } from '../../pages/Home/doneSlice';
+import { shareJobTodo } from '../../pages/Home/todoSlice';
+import { shareJobProcess } from '../../pages/Home/processSlice';
+import { shareJobDone } from '../../pages/Home/doneSlice';
 import { ListJobProps } from '../../Model/ListJob';
 import { listGroup, listGroupProps } from '../../Model/listGroup';
+import { addNotify } from '../Notification/notifycationSlice';
 
 interface ModalShareTaskProps {
     job: ListJobProps;
@@ -42,6 +43,12 @@ function ModalShareTask({ job, show, hide }: ModalShareTaskProps) {
                 }),
             );
         }
+        dispatch(
+            addNotify({
+                type: 'share',
+                text: `Bạn đã chia sẻ công việc *${job.task}* vào ${group.name}`,
+            }),
+        );
     };
     return (
         <Modal show={show} onHide={hide}>

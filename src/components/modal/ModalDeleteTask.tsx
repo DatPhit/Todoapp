@@ -6,6 +6,7 @@ import { deleteTodo } from '../../pages/Home/todoSlice';
 import { deleteProcess } from '../../pages/Home/processSlice';
 import { deleteDone } from '../../pages/Home/doneSlice';
 import { ListJobProps } from '../../Model/ListJob';
+import { addNotify } from '../Notification/notifycationSlice';
 
 interface ModalDeleteTaskProps {
     job: ListJobProps;
@@ -26,6 +27,12 @@ function ModalDeleteTask({ job, show, hide }: ModalDeleteTaskProps) {
         if (jobStatus === 'Done') {
             dispatch(deleteDone(job.id));
         }
+        dispatch(
+            addNotify({
+                type: 'success',
+                text: `Xoá công việc *${job.task}* thành công`,
+            }),
+        );
     };
     return (
         <Modal show={show} onHide={hide}>

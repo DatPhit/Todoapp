@@ -1,6 +1,7 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { listGroupProps } from '../../Model/listGroup';
-import { faXmark } from '@fortawesome/free-solid-svg-icons';
+import { faPlus, faXmark } from '@fortawesome/free-solid-svg-icons';
+import { Button } from 'react-bootstrap';
 
 interface MemberPageProps {
     group: listGroupProps;
@@ -17,8 +18,8 @@ function MemberPage({ group }: MemberPageProps) {
                 <div className=""></div>
                 <div className="">Role</div>
             </div>
-            <hr className=" mb-0" />
-            <div className="d-flex flex-column ">
+            <hr className="mb-0" />
+            <div className="d-flex flex-column">
                 {group.members.map((member, index) => (
                     <div key={index} className="position-relative">
                         <div className="cardgroup_member_item w-100 d-flex align-items-center">
@@ -47,6 +48,19 @@ function MemberPage({ group }: MemberPageProps) {
                         <hr className="m-0" />
                     </div>
                 ))}
+                <Button
+                    className="mt-3 fs-5 p-2 border"
+                    style={{
+                        marginLeft: '6rem',
+                        width: '14rem',
+                        minHeight: '3rem',
+                        backgroundColor: '#DDA0DD',
+                        color: 'black',
+                    }}
+                >
+                    Thêm thành viên
+                    <FontAwesomeIcon className="ms-2" icon={faPlus} />
+                </Button>
             </div>
         </div>
     );
