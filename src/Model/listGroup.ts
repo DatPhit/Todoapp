@@ -155,8 +155,13 @@ export const listGroup: listGroupProps[] = [
     },
 ];
 
-// {
-//     name: '',
-//     role: '',
-//     avatar: '',
-// },
+// const listName = [''];
+// listGroup.forEach((group) => {
+//     group.members.forEach((member) => {
+//         if (!listName.includes(member.name)) {
+//             listName.push(member.name);
+//         }
+//     });
+// });
+
+// export { listName };
