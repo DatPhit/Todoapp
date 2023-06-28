@@ -48,19 +48,23 @@ function MemberPage({ group }: MemberPageProps) {
                         <hr className="m-0" />
                     </div>
                 ))}
-                <Button
-                    className="mt-3 fs-5 p-2 border"
-                    style={{
-                        marginLeft: '6rem',
-                        width: '14rem',
-                        minHeight: '3rem',
-                        backgroundColor: '#DDA0DD',
-                        color: 'black',
-                    }}
-                >
-                    Thêm thành viên
-                    <FontAwesomeIcon className="ms-2" icon={faPlus} />
-                </Button>
+                {group.members.find(
+                    (member) => member.name === adminName && member.role === 'Owner',
+                ) && (
+                    <Button
+                        className="mt-3 fs-5 p-2 border"
+                        style={{
+                            marginLeft: '6rem',
+                            width: '14rem',
+                            minHeight: '3rem',
+                            backgroundColor: '#DDA0DD',
+                            color: 'black',
+                        }}
+                    >
+                        Thêm thành viên
+                        <FontAwesomeIcon className="ms-2" icon={faPlus} />
+                    </Button>
+                )}
             </div>
         </div>
     );

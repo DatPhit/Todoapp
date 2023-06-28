@@ -20,6 +20,7 @@ import ModalEditTask from '../modal/ModalEditTask';
 import ModalDeleteTask from '../modal/ModalDeleteTask';
 import ModalShareTask from '../modal/ModalShareTask';
 import ModalReviewTask from '../modal/ModalReviewTask';
+import { addNotify } from '../Notification/notifycationSlice';
 
 interface CardJobProps {
     Job: ListJobProps;
@@ -114,6 +115,21 @@ const CardJob: React.FC<CardJobProps> = ({ Job }) => {
             dispatch(addDone(Job));
             dispatch(deleteProcess(id));
             dispatch(changeStatusToDone(0));
+            if (type === 'Việc được chia sẻ' && owner !== 'Quang Đạt') {
+                dispatch(
+                    addNotify({
+                        type: 'success',
+                        text: `Bạn đã cứu ${owner} thành công. Công việc *${task}* đã chuyển sang trạng thái Done`,
+                    }),
+                );
+            } else {
+                dispatch(
+                    addNotify({
+                        type: 'success',
+                        text: `Công việc *${task}* đã chuyển sang trạng thái Done`,
+                    }),
+                );
+            }
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [steps]);

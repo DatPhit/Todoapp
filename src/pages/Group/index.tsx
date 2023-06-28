@@ -11,7 +11,11 @@ function Group() {
             ))}
             <div
                 className="ms-3 me-4 mb-5 border border-black shadow-sm center flex-column"
-                style={{ width: 300, height: 300, background: 'var(--background-color)' }}
+                style={{
+                    width: '17.5vw',
+                    aspectRatio: '1/1',
+                    background: 'var(--background-color)',
+                }}
             >
                 <FontAwesomeIcon icon={faPlus} style={{ width: 170, height: 170 }} />
                 <div className="fw-medium fs-4">Thêm nhóm</div>

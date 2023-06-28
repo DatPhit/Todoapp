@@ -5,8 +5,6 @@ import {
     faTriangleExclamation,
 } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import moment from 'moment';
-import { useEffect, useState } from 'react';
 
 interface NotificationProps {
     type: 'warning' | 'success' | 'danger' | 'share' | 'normal' | string;

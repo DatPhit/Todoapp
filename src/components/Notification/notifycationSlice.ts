@@ -8,6 +8,7 @@ export const notificationSlice = createSlice({
             type: 'success',
             text: 'Công việc *Chuẩn bị buổi họp dự án* đã chuyển sang trạng thái Done',
         },
+        { type: 'danger', text: 'Công việc *Triển khai chiến dịch quảng cáo* đã quá hạn' },
         { type: 'warning', text: 'Công việc *Kiểm tra hệ thống bảo mật* sắp dến hạn' },
         {
             type: 'success',
@@ -19,7 +20,7 @@ export const notificationSlice = createSlice({
             type: 'success',
             text: 'Bạn đã chia sẻ công việc *Thực hiện kiểm thử phần mềm* vào Nhóm ITSS',
         },
-        { type: 'danger', text: 'Công việc Kiểm tra hệ thống bảo mật đã quá hạn' },
+        { type: 'danger', text: 'Công việc *Kiểm tra hệ thống bảo mật* đã quá hạn' },
         {
             type: 'info',
             text: 'Công việc *Đặt vé xem phim* đã chuyển sang trạng thái Processing',

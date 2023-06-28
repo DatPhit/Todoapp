@@ -65,12 +65,21 @@ function Home() {
         }
 
         if (result.source.droppableId !== 'Done' && result.destination.droppableId === 'Done') {
-            dispatch(
-                addNotify({
-                    type: 'success',
-                    text: `Công việc *${data?.task}* đã chuyển sang trạng thái Done`,
-                }),
-            );
+            if (data?.type === 'Việc được chia sẻ' && data?.owner !== 'Quang Đạt') {
+                dispatch(
+                    addNotify({
+                        type: 'success',
+                        text: `Bạn đã cứu ${data?.owner} thành công. Công việc *${data?.task}* đã chuyển sang trạng thái Done`,
+                    }),
+                );
+            } else {
+                dispatch(
+                    addNotify({
+                        type: 'success',
+                        text: `Công việc *${data?.task}* đã chuyển sang trạng thái Done`,
+                    }),
+                );
+            }
         }
 
         if (result.source.droppableId !== 'Todo' && result.destination.droppableId === 'Todo') {

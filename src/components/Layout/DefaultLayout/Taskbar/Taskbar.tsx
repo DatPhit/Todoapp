@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
@@ -21,6 +21,21 @@ function Taskbar() {
     const isLogin = useSelector(authenSelector);
     const [showNoti, setShowNoti] = useState(false);
     const notifyList = useSelector(notifySelector);
+    const notifyRef = useRef<HTMLDivElement>(null);
+
+    useEffect(() => {
+        const handleDocumentClick = (event: MouseEvent) => {
+            if (notifyRef && !notifyRef.current?.contains(event.target as Node)) {
+                setShowNoti(false);
+            }
+        };
+        document.addEventListener('click', handleDocumentClick);
+
+        return () => {
+            document.removeEventListener('click', handleDocumentClick);
+        };
+    }, [showNoti]);
+
     return (
         <div className="d-flex flex-column position-relative">
             {/* Khung head chứa thông tin đăng nhập hay chưa */}
@@ -79,6 +94,7 @@ function Taskbar() {
                         className="position-relative"
                         style={{ cursor: 'pointer' }}
                         onClick={() => setShowNoti(!showNoti)}
+                        ref={notifyRef}
                     >
                         <FontAwesomeIcon icon={faBell} size="lg" />
                         <span className="position-absolute top-20 right-20 translate-middle p-1 bg-danger rounded-circle">
@@ -91,7 +107,7 @@ function Taskbar() {
                             style={{ height: '80vh', width: '23rem', zIndex: 10 }}
                         >
                             <div className="fw-medium fs-4">Thông báo</div>
-                            <hr />
+                            <hr className="mb-2" />
 
                             {/* Notification */}
                             {notifyList.map((notify, index) => (

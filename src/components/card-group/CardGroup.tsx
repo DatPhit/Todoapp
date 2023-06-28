@@ -19,7 +19,12 @@ function CardGroup({ group }: CardGroupProps) {
         <div>
             <div
                 className="ms-3 me-4 mb-5 border border-black shadow-sm center flex-column"
-                style={{ width: 300, height: 300, background: 'var(--background-color)' }}
+                style={{
+                    width: '17.5vw',
+                    aspectRatio: '1/1',
+                    background: 'var(--background-color)',
+                    cursor: 'pointer',
+                }}
                 onClick={() => setShowModal(true)}
             >
                 <Figure className="mb-4">
