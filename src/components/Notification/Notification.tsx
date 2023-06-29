@@ -5,6 +5,7 @@ import {
     faTriangleExclamation,
 } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import moment from 'moment';
 
 interface NotificationProps {
     type: 'warning' | 'success' | 'danger' | 'share' | 'normal' | string;
@@ -47,7 +48,7 @@ const Notification: React.FC<NotificationProps> = ({ type, text }) => {
                 )}
                 <div className="ms-3 d-flex flex-column justify-content-between">
                     <div className="">{text}</div>
-                    {/* <div className="small">{currentTime}</div> */}
+                    <div className="small">{moment(new Date()).format('HH:mm DD-MM-YYYY')}</div>
                 </div>
             </div>
             <i className="w-100">

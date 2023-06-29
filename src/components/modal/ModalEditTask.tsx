@@ -20,6 +20,7 @@ function ModalEditTask({ job, show, hide }: ModalEditTaskProps) {
     const dispatch = useDispatch();
 
     const [task, setTask] = useState(job.task);
+    const [startDate, setStartDate] = useState(job.start_date.toString());
     const [deadline, setDeadline] = useState(job.deadline.toString());
     const [description, setDescription] = useState(job.description);
     const [workplace, setWorkplace] = useState(job.workplace);
@@ -47,6 +48,7 @@ function ModalEditTask({ job, show, hide }: ModalEditTaskProps) {
                         id: job.id,
                         task,
                         status: 'Todo',
+                        start_date: startDate,
                         deadline,
                         steps: stepValues,
                         description,
@@ -67,6 +69,7 @@ function ModalEditTask({ job, show, hide }: ModalEditTaskProps) {
                         id: job.id,
                         task,
                         status: 'Processing',
+                        start_date: startDate,
                         deadline,
                         steps: stepValues,
                         description,
@@ -87,6 +90,7 @@ function ModalEditTask({ job, show, hide }: ModalEditTaskProps) {
                         id: job.id,
                         task,
                         status: 'Done',
+                        start_date: startDate,
                         deadline,
                         steps: stepValues,
                         description,
@@ -239,6 +243,18 @@ function ModalEditTask({ job, show, hide }: ModalEditTaskProps) {
                                         <option value="Medium">Medium</option>
                                         <option value="High">High</option>
                                     </Form.Select>
+                                </div>
+
+                                {/* Start Date */}
+                                <div className="mb-3 d-flex align-items-center">
+                                    <div className="w-25">Start date</div>
+                                    <input
+                                        type="datetime-local"
+                                        className="w-100"
+                                        value={startDate}
+                                        onChange={(e) => setStartDate(e.target.value)}
+                                        min="2023-06-21T00:00"
+                                    />
                                 </div>
 
                                 {/* Dealine */}
